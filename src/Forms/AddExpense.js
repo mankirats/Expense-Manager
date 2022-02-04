@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 
 const InputField = styled.input`
-    width: 48%;
+    width: calc(95% / 2);
     outline: none;
     font-size: 0.9rem;
     border: 1px solid #393e46;
@@ -11,16 +11,16 @@ const InputField = styled.input`
     padding: 0.2rem;
 `;
 const SubmitButton = styled.button`
-    margin: 4px 2px;
+    letter-spacing: 0.5px;
+    margin: 4px 4px;
     padding: 0.3rem;
     color: #e16428;
-    border: 10px solid white;
-    width: 48%;
+    width: calc(95% / 2);
     outline: none;
     font-size: 0.9rem;
-    border: 1px solid #393e46;
     border-radius: 4px;
     background: none;
+    font-weight: bold;
 `;
 
 const StyledForm = styled.form`
@@ -61,7 +61,6 @@ function AddExpense(props) {
                         }))
                     }
                 />
-
                 <InputField
                     type="number"
                     name="total"
@@ -89,8 +88,7 @@ function AddExpense(props) {
                         }))
                     }
                 />
-
-                <SubmitButton type="submit">Add Expense</SubmitButton>
+                <SubmitButton type="submit">ADD EXPENSE</SubmitButton>
             </StyledForm>
         </>
     );
