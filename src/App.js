@@ -1,4 +1,4 @@
-import React, { Component, setState } from "react";
+import React, { Component } from "react";
 import Expense from "./Components/Expense";
 import styled from "styled-components";
 import AddExpense from "./Forms/AddExpense";
@@ -10,6 +10,23 @@ const AppContainer = styled.div`
 
 const ExpenseContainerDiv = styled.div`
     margin: 1rem 0;
+    padding: 1rem;
+`;
+
+const ExpenseHeaderDiv = styled.div`
+    position: relative;
+    background: #222831;
+    margin: 0.5rem 0;
+    /* width: 45vw; */
+    padding: 0 2rem;
+    height: calc(2rem + 2vh);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+    letter-spacing: 1px;
 `;
 
 class App extends Component {
@@ -55,12 +72,11 @@ class App extends Component {
                     <AddExpense
                         onSubmitForm={this.onSubmitFormHandler}
                     ></AddExpense>
-                    {/* <Expense
-                        key="0"
-                        title="TITLE"
-                        total="TOTAL"
-                        date="DATE"
-                    ></Expense> */}
+                    <ExpenseHeaderDiv>
+                        <span>TITLE</span>
+                        <span>TOTAL</span>
+                        <span>DATE</span>
+                    </ExpenseHeaderDiv>
                     {this.state.expenseData.map((expenseItem) => {
                         return (
                             <Expense
