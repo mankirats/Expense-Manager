@@ -7,16 +7,16 @@ function AddExpense(props) {
         expenseDate: "",
     });
 
-    const submitForm = (e) => {
+    const submitForm = (event) => {
+        event.preventDefault();
         console.log(
             `${expenseItem.expenseTitle} ${expenseItem.expenseTotal} ${expenseItem.expenseDate}`
         );
-        props.submitForm(expenseItem);
-        e.preventDefault();
+        props.onSubmitForm(expenseItem);
     };
     return (
         <>
-            <form onSubmit={(e) => submitForm(e)}>
+            <form onSubmit={submitForm}>
                 <input
                     type="text"
                     name="title"
