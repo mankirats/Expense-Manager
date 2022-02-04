@@ -1,12 +1,17 @@
 import React, { useState } from "react";
 
 function AddExpense(props) {
-    let [expenseTitle, setExpenseTitle] = useState("");
-    let [expenseTotal, setExpenseTotal] = useState("");
-    let [expenseDate, setExpenseDate] = useState("");
+    const [expenseItem, setExpenseItem] = useState({
+        expenseTitle: "",
+        expenseTotal: "",
+        expenseDate: "",
+    });
 
     const submitForm = (e) => {
-        console.log(`${expenseTitle} ${expenseTotal} ${expenseDate}`);
+        console.log(
+            `${expenseItem.expenseTitle} ${expenseItem.expenseTotal} ${expenseItem.expenseDate}`
+        );
+        props.submitForm(expenseItem);
         e.preventDefault();
     };
     return (
@@ -16,24 +21,39 @@ function AddExpense(props) {
                     type="text"
                     name="title"
                     id="title"
-                    value={expenseTitle}
-                    onChange={(e) => setExpenseTitle(e.target.value)}
+                    value={expenseItem.expenseTitle}
+                    onChange={(e) =>
+                        setExpenseItem((prevState) => ({
+                            ...prevState,
+                            expenseTitle: e.target.value,
+                        }))
+                    }
                 />
 
                 <input
                     type="number"
                     name="total"
                     id="total"
-                    value={expenseTotal}
-                    onChange={(e) => setExpenseTotal(e.target.value)}
+                    value={expenseItem.expenseTotal}
+                    onChange={(e) =>
+                        setExpenseItem((prevState) => ({
+                            ...prevState,
+                            expenseTotal: e.target.value,
+                        }))
+                    }
                 />
 
                 <input
                     type="date"
                     name="date"
                     id="date"
-                    value={expenseDate}
-                    onChange={(e) => setExpenseDate(e.target.value)}
+                    value={expenseItem.expenseDate}
+                    onChange={(e) =>
+                        setExpenseItem((prevState) => ({
+                            ...prevState,
+                            expenseDate: e.target.value,
+                        }))
+                    }
                 />
 
                 <button type="submit">Add Expense</button>
