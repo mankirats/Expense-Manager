@@ -31,23 +31,21 @@ class App extends Component {
                 },
             ],
         };
-        // [
-
-        // ];
     }
 
-    submitForm = (event) => (formState) => {
-        event.preventDefault();
-        this.setState(
-            this.state.expenseData.push({
-                id:
-                    this.state.expenseData[this.state.expenseData.length - 1]
-                        .id + 1,
-                title: formState.expenseTitle,
-                total: formState.expenseTotal,
-                date: formState.expenseDate,
-            })
-        );
+    onSubmitFormHandler = (expenseItem) => {
+        const formData = { ...expenseItem };
+        // this.setState(
+        //     this.state.expenseData.push({
+        //         id:
+        //             this.state.expenseData[this.state.expenseData.length - 1]
+        //                 .id + 1,
+        //         title: formData.expenseTitle,
+        //         total: formData.expenseTotal,
+        //         date: formData.expenseDate,
+        //     })
+        // );
+        console.log(formData);
     };
     render() {
         return (
@@ -59,7 +57,7 @@ class App extends Component {
                         title="TITLE"
                         total="TOTAL"
                         date="DATE"
-                        submitForm={(data) => this.submitForm(data)}
+                        onSubmitForm={this.onSubmitFormHandler}
                     ></Expense>
                     {this.state.expenseData.map((expenseItem) => {
                         return (
