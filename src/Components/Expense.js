@@ -3,10 +3,9 @@ import styled from "styled-components";
 
 const ExpenseDiv = styled.div`
     position: relative;
-
-    background: #262626;
+    background: #393e46;
     margin: 0.2rem 0;
-    width: 45vw;
+    /* width: 45vw; */
     padding: 0 2rem;
     height: calc(2rem + 2vh);
     border-radius: 8px;
@@ -15,19 +14,25 @@ const ExpenseDiv = styled.div`
     justify-content: space-between;
     align-items: center;
 `;
+
 const ExpenseEntryNumber = styled.span`
-    width: 25px;
-    height: 25px;
+    width: 30px;
+    height: 30px;
     left: -8px;
-    background: #f0a500;
-    border-radius: 25px;
+    background: #e16428;
+    border-radius: 30px;
     color: #082032;
-    text-align: center;
+    font-weight: bold;
+    display: grid;
+    font-size: 0.9rem;
+    /* text-align: center; */
+    place-items: center;
     position: absolute;
 `;
 const ExpenseTitle = styled.span``;
 const ExpenseTotal = styled.span``;
 const ExpenseDate = styled.span``;
+
 function Expense(props) {
     return (
         <>
