@@ -7,7 +7,7 @@ const ExpenseDiv = styled.div`
     margin: 0.2rem 0;
     /* width: 45vw; */
     padding: 0 2rem;
-    height: calc(2rem + 2vh);
+    min-height: calc(2rem + 2vh);
     border-radius: 8px;
     display: flex;
     flex-direction: row;
@@ -27,11 +27,21 @@ const ExpenseEntryNumber = styled.span`
     font-size: 0.9rem;
     /* text-align: center; */
     place-items: center;
+    display: none;
     position: absolute;
 `;
-const ExpenseTitle = styled.span``;
-const ExpenseTotal = styled.span``;
-const ExpenseDate = styled.span``;
+const ExpenseTitle = styled.span`
+    width: calc(100% / 3);
+    overflow-wrap: break-word;
+`;
+const ExpenseTotal = styled.span`
+    width: calc(100% / 3);
+    text-align: center;
+`;
+const ExpenseDate = styled.span`
+    width: calc(100% / 3);
+    text-align: right;
+`;
 
 function Expense(props) {
     return (
