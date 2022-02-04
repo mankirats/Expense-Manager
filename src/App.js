@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, setState } from "react";
 import Expense from "./Components/Expense";
 import styled from "styled-components";
 import AddExpense from "./Forms/AddExpense";
@@ -33,35 +33,39 @@ class App extends Component {
         };
     }
 
-    onSubmitFormHandler(expenseItem) {
+    onSubmitFormHandler = (expenseItem) => {
         const formData = { ...expenseItem };
-        this.setState((state) => {
-            state.expenseData.push({
-                id: state.expenseData[state.expenseData.length - 1].id + 1,
-                title: formData.expenseTitle,
-                total: formData.expenseTotal,
-                date: formData.expenseDate,
-            });
+        const newExpense = {
+            id:
+                this.state.expenseData[this.state.expenseData.length - 1].id +
+                1,
+            title: formData.expenseTitle,
+            total: formData.expenseTotal,
+            date: formData.expenseDate,
+        };
+        return this.setState({
+            expenseData: [...this.state.expenseData, newExpense],
         });
-        console.log(formData);
-    }
+    };
     render() {
+        console.log(this.state.expenseData);
         return (
             <AppContainer>
                 <ExpenseContainerDiv>
                     <AddExpense
                         onSubmitForm={this.onSubmitFormHandler}
                     ></AddExpense>
-                    <Expense
+                    {/* <Expense
                         key="0"
                         title="TITLE"
                         total="TOTAL"
                         date="DATE"
-                    ></Expense>
+                    ></Expense> */}
                     {this.state.expenseData.map((expenseItem) => {
                         return (
                             <Expense
                                 key={expenseItem.id}
+                                id={expenseItem.id}
                                 title={expenseItem.title}
                                 total={expenseItem.total}
                                 date={expenseItem.date}
