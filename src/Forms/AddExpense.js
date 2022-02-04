@@ -9,9 +9,9 @@ function AddExpense(props) {
 
     const submitForm = (event) => {
         event.preventDefault();
-        console.log(
-            `${expenseItem.expenseTitle} ${expenseItem.expenseTotal} ${expenseItem.expenseDate}`
-        );
+        // console.log(
+        //     `${expenseItem.expenseTitle} ${expenseItem.expenseTotal} ${expenseItem.expenseDate}`
+        // );
         props.onSubmitForm(expenseItem);
     };
     return (
