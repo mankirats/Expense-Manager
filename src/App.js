@@ -1,34 +1,12 @@
 import React, { Component } from "react";
 import Expense from "./Components/Expense";
-import styled from "styled-components";
 import AddExpense from "./Forms/AddExpense";
-
-const AppContainer = styled.div`
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-`;
-
-const ExpenseContainerDiv = styled.div`
-    margin: 1rem 0;
-    padding: 1rem;
-    max-width: 55vw;
-`;
-
-const ExpenseHeaderDiv = styled.div`
-    position: relative;
-    background: #222831;
-    margin: 0.5rem 0;
-    padding: 0 2rem;
-    height: calc(2rem + 2vh);
-    border-radius: 8px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    font-weight: bold;
-    letter-spacing: 1px;
-`;
+import FilterExpenseByYear from "./Components/FilterExpenseByYear";
+import {
+    AppContainer,
+    ExpenseContainerDiv,
+    ExpenseHeaderDiv,
+} from "./Components/styledComponents";
 
 class App extends Component {
     constructor(props) {
@@ -60,13 +38,14 @@ class App extends Component {
                     date: "2021, 5, 12",
                 },
             ],
+            filterData: [],
         };
     }
 
     formatDate = (inputDate) => {
         let options = {
-            weekday: "short",
-            // year: "numeric",
+            // weekday: "short",
+            year: "numeric",
             month: "short",
             day: "numeric",
         };
@@ -90,7 +69,18 @@ class App extends Component {
             expenseData: [...this.state.expenseData, newExpense],
         });
     };
+
+    onFilterExpenseDataHandler = (expenseDateFromFilterComponent) => {
+        console.log(expenseDateFromFilterComponent);
+        // return this.setState({
+        //     filterData: this.state.expenseData.filter((expense) => {
+        //         return expenseDateFromFilterComponent == expense;
+        //     }),
+        // });
+    };
+
     render() {
+        console.log(this.state.filterData);
         let mapExpenseState = this.state.expenseData.map((expenseItem) => {
             return (
                 <Expense
@@ -119,6 +109,14 @@ class App extends Component {
                         <span>DATE</span>
                         <span>TOTAL</span>
                     </ExpenseHeaderDiv>
+                    <FilterExpenseByYear
+                        onFilterExpenseData={this.onFilterExpenseDataHandler}
+                        expenseDateArray={this.state.expenseData.map(
+                            (expense) => {
+                                return expense.date;
+                            }
+                        )}
+                    ></FilterExpenseByYear>
                     {mapExpenseState}
                 </ExpenseContainerDiv>
             </AppContainer>
