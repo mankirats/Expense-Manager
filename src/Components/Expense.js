@@ -25,7 +25,6 @@ const ExpenseEntryNumber = styled.span`
     font-weight: bold;
     display: grid;
     font-size: 0.9rem;
-    /* text-align: center; */
     place-items: center;
     display: none;
     position: absolute;
@@ -36,11 +35,11 @@ const ExpenseTitle = styled.span`
 `;
 const ExpenseTotal = styled.span`
     width: calc(100% / 3);
-    text-align: center;
+    text-align: right;
 `;
 const ExpenseDate = styled.span`
+    text-align: center;
     width: calc(100% / 3);
-    text-align: right;
 `;
 
 function Expense(props) {
@@ -49,8 +48,8 @@ function Expense(props) {
             <ExpenseDiv>
                 <ExpenseEntryNumber>{props.id}</ExpenseEntryNumber>
                 <ExpenseTitle>{props.title}</ExpenseTitle>
-                <ExpenseTotal>{props.total}</ExpenseTotal>
                 <ExpenseDate>{props.date}</ExpenseDate>
+                <ExpenseTotal>{props.total}</ExpenseTotal>
             </ExpenseDiv>
         </>
     );
