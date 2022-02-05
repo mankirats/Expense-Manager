@@ -7,13 +7,12 @@ const AppContainer = styled.div`
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    width: 100%;
 `;
 
 const ExpenseContainerDiv = styled.div`
     margin: 1rem 0;
     padding: 1rem;
-    width: 45vw;
+    max-width: 55vw;
 `;
 
 const ExpenseHeaderDiv = styled.div`
@@ -37,16 +36,28 @@ class App extends Component {
         this.state = {
             expenseData: [
                 {
-                    id: 0,
-                    title: "Nice",
-                    total: "Hello",
-                    date: "Hello",
+                    id: "e1",
+                    title: "Toilet Paper",
+                    total: 94.12,
+                    date: "2020,1,22",
                 },
                 {
-                    id: 1,
-                    title: "Nice1",
-                    total: "Hell1",
-                    date: "Hello1",
+                    id: "e2",
+                    title: "New TV",
+                    total: 799.49,
+                    date: "2019,4,12",
+                },
+                {
+                    id: "e3",
+                    title: "Car Insurance",
+                    total: 294.67,
+                    date: "2020, 2, 28",
+                },
+                {
+                    id: "e4",
+                    title: "New Desk (Wooden)",
+                    total: 450,
+                    date: "2021, 5, 12",
                 },
             ],
         };
@@ -80,7 +91,23 @@ class App extends Component {
         });
     };
     render() {
-        console.log(this.state.expenseData);
+        let mapExpenseState = this.state.expenseData.map((expenseItem) => {
+            return (
+                <Expense
+                    key={expenseItem.id}
+                    id={expenseItem.id}
+                    title={
+                        expenseItem.title
+                        //     > 15
+                        //         ? expenseItem.title.slice(0, 10)
+                        //         : expenseItem.title
+                    }
+                    date={this.formatDate(expenseItem.date)}
+                    total={expenseItem.total}
+                />
+            );
+        });
+
         return (
             <AppContainer>
                 <ExpenseContainerDiv>
@@ -89,25 +116,10 @@ class App extends Component {
                     ></AddExpense>
                     <ExpenseHeaderDiv>
                         <span>TITLE</span>
-                        <span>TOTAL</span>
                         <span>DATE</span>
+                        <span>TOTAL</span>
                     </ExpenseHeaderDiv>
-                    {this.state.expenseData.map((expenseItem) => {
-                        return (
-                            <Expense
-                                key={expenseItem.id}
-                                id={expenseItem.id}
-                                title={
-                                    expenseItem.title
-                                    //     > 15
-                                    //         ? expenseItem.title.slice(0, 10)
-                                    //         : expenseItem.title
-                                }
-                                total={expenseItem.total}
-                                date={expenseItem.date}
-                            />
-                        );
-                    })}
+                    {mapExpenseState}
                 </ExpenseContainerDiv>
             </AppContainer>
         );
