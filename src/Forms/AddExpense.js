@@ -30,6 +30,21 @@ const StyledForm = styled.form`
     align-items: center;
     flex-wrap: wrap;
 `;
+const FormContainer = styled.div`
+    /* padding: 0.2rem; */
+    border: 1px solid #393e46;
+    border-radius: 4px;
+`;
+
+const FormTitle = styled.div`
+    color: #393e46;
+    border-radius: 4px;
+
+    padding: 0.2rem 1rem;
+    background: #ececeb;
+    font-weight: 700;
+    font-size: 1.05rem;
+`;
 
 function AddExpense(props) {
     const [expenseItem, setExpenseItem] = useState({
@@ -46,7 +61,8 @@ function AddExpense(props) {
         props.onSubmitForm(expenseItem);
     };
     return (
-        <>
+        <FormContainer>
+            <FormTitle>ADD EXPENSE</FormTitle>
             <StyledForm onSubmit={submitForm}>
                 <InputField
                     type="text"
@@ -90,7 +106,7 @@ function AddExpense(props) {
                 />
                 <SubmitButton type="submit">ADD EXPENSE</SubmitButton>
             </StyledForm>
-        </>
+        </FormContainer>
     );
 }
 
