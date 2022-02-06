@@ -26,7 +26,9 @@ function FilterExpenseByYear(props) {
                 <FilterYearDiv>
                     <span>Filter by</span>
                     <select name="expenseYear" id="expenseYear">
-                        <option value="all">All</option>
+                        <option key="All" value="all">
+                            All
+                        </option>
                         {expenseDateMapping}
                     </select>
                 </FilterYearDiv>
