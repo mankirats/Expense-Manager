@@ -40,9 +40,10 @@ class App extends Component {
                     date: "2021, 5, 12",
                 },
             ],
-            filterData: [],
+            filterYear: 0,
         };
     }
+    filterData = [];
 
     onSubmitFormHandler = (expenseItem) => {
         const formData = { ...expenseItem };
@@ -60,24 +61,32 @@ class App extends Component {
         });
     };
 
-    onFilterExpenseDataHandler = (expenseDateFromFilterComponent) => {
-        console.log(expenseDateFromFilterComponent);
-        this.setState({
-            filterData: this.state.expenseData.filter((expense) => {
-                return (
-                    extractExpenseYear(expense.date) ==
-                    expenseDateFromFilterComponent
-                );
-            }),
+    setFilterYearHandler = (selectedYear) => {
+        return this.setState((prevState) => {
+            return {
+                ...prevState,
+                filterYear: selectedYear,
+            };
         });
     };
+    // onFilterExpenseDataHandler = (expenseDateFromFilterComponent) => {
+    //     // console.log(expenseDateFromFilterComponent);
+    //     console.log(this.filterData);
+    //     return (this.filterData = this.state.expenseData.filter((expense) => {
+    //         return (
+    //             extractExpenseYear(expense.date) ==
+    //             expenseDateFromFilterComponent
+    //         );
+    //     }));
+    // };
 
     render() {
+        const filterData = this.state.expenseData.filter((expense) => {
+            return extractExpenseYear(expense.date) == this.state.filterYear;
+        });
+        console.log(this.state);
         let dataToDisplay =
-            this.state.filterData.length > 0
-                ? this.state.filterData
-                : this.state.expenseData;
-        console.log(this.state.filterData);
+            filterData.length > 0 ? filterData : this.state.expenseData;
         let mapExpenseState = dataToDisplay.map((expenseItem) => {
             return (
                 <Expense
@@ -102,17 +111,20 @@ class App extends Component {
                         onSubmitForm={this.onSubmitFormHandler}
                     ></AddExpense>
                     <ExpenseHeaderDiv>
-                        <span>TITLE</span>
-                        <span>DATE</span>
-                        <span>TOTAL</span>
+                        <span>Date</span>
+                        <span>Title</span>
+                        <span>Total</span>
                     </ExpenseHeaderDiv>
                     <FilterExpenseByYear
-                        onFilterExpenseData={this.onFilterExpenseDataHandler}
-                        expenseDateArray={this.state.expenseData.map(
-                            (expense) => {
-                                return expense.date;
-                            }
-                        )}
+                        filterYear={this.state.filterYear}
+                        setFilterYear={this.setFilterYearHandler}
+                        expenseDateArray={[
+                            ...new Set(
+                                this.state.expenseData.map((expense) => {
+                                    return expense.date;
+                                })
+                            ),
+                        ]}
                     ></FilterExpenseByYear>
                     {mapExpenseState}
                 </ExpenseContainerDiv>
