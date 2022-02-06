@@ -24,7 +24,7 @@ function AddExpense(props) {
     };
     return (
         <FormContainer>
-            <FormTitle>ADD EXPENSE</FormTitle>
+            <FormTitle>add expense</FormTitle>
             <StyledForm onSubmit={submitForm}>
                 <InputField
                     type="text"
