@@ -118,13 +118,15 @@ class App extends Component {
                     <FilterExpenseByYear
                         filterYear={this.state.filterYear}
                         setFilterYear={this.setFilterYearHandler}
-                        expenseDateArray={[
-                            ...new Set(
-                                this.state.expenseData.map((expense) => {
-                                    return expense.date;
-                                })
-                            ),
-                        ]}
+                        expenseDateArray={this.state.expenseData
+                            .map((expense) => {
+                                return extractExpenseYear(expense.date);
+                            })
+                            .filter((expenseYear, idx, expenseYearArr) => {
+                                return (
+                                    expenseYearArr.indexOf(expenseYear) == idx
+                                );
+                            })}
                     ></FilterExpenseByYear>
                     {mapExpenseState}
                 </ExpenseContainerDiv>
