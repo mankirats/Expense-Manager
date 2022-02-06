@@ -13,8 +13,8 @@ function Expense(props) {
         <>
             <ExpenseDiv>
                 <ExpenseEntryNumber>{props.id}</ExpenseEntryNumber>
-                <ExpenseTitle>{props.title}</ExpenseTitle>
                 <ExpenseDate>{props.date}</ExpenseDate>
+                <ExpenseTitle>{props.title}</ExpenseTitle>
                 <ExpenseTotal>{props.total}</ExpenseTotal>
             </ExpenseDiv>
         </>
