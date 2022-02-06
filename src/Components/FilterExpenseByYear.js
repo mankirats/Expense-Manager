@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { FilterYearDiv } from "./styledComponents";
 import { extractExpenseYear } from "../commonFunction/commonFunc";
 
@@ -6,8 +6,8 @@ function FilterExpenseByYear(props) {
     let expenseDateMapping = props.expenseDateArray.map(
         (expenseDate, index) => {
             return (
-                <option key={index} value={extractExpenseYear(expenseDate)}>
-                    {extractExpenseYear(expenseDate)}
+                <option key={index} value={expenseDate}>
+                    {expenseDate}
                 </option>
             );
         }
