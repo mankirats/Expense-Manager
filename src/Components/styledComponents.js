@@ -29,6 +29,7 @@ const ExpenseEntryNumber = styled.span`
     position: absolute;
 `;
 const ExpenseTitle = styled.span`
+    text-align: center;
     width: calc(100% / 3);
     overflow-wrap: break-word;
 `;
@@ -37,7 +38,7 @@ const ExpenseTotal = styled.span`
     text-align: right;
 `;
 const ExpenseDate = styled.span`
-    text-align: center;
+    text-align: left;
     width: calc(100% / 3);
 `;
 
@@ -49,8 +50,10 @@ const InputField = styled.input`
     border-radius: 4px;
     margin: 4px 2px;
     padding: 0.2rem;
+    background: white;
 `;
 const SubmitButton = styled.button`
+    background: white;
     letter-spacing: 0.5px;
     margin: 4px 4px;
     padding: 0.3rem;
@@ -59,7 +62,6 @@ const SubmitButton = styled.button`
     outline: none;
     font-size: 0.9rem;
     border-radius: 4px;
-    background: none;
     font-weight: bold;
 `;
 
@@ -69,19 +71,21 @@ const StyledForm = styled.form`
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
+    background: #f9f9f9;
+    border-radius: 4px;
 `;
 const FormContainer = styled.div`
     /* padding: 0.2rem; */
     border: 1px solid #393e46;
     border-radius: 4px;
+    background: #f9f9f9;
 `;
 
 const FormTitle = styled.div`
-    color: #393e46;
-    border-radius: 4px;
-
+    color: white;
+    text-align: right;
+    background: #797887;
     padding: 0.2rem 1rem;
-    background: #ececeb;
     font-weight: 700;
     font-size: 1.05rem;
 `;
