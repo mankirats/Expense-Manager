@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import Expense from "./Components/Expense";
 import AddExpense from "./Forms/AddExpense";
 import FilterExpenseByYear from "./Components/FilterExpenseByYear";
+import { extractExpenseYear, formatDate } from "./commonFunction/commonFunc";
+
 import {
     AppContainer,
     ExpenseContainerDiv,
@@ -42,28 +44,16 @@ class App extends Component {
         };
     }
 
-    formatDate = (inputDate) => {
-        let options = {
-            // weekday: "short",
-            year: "numeric",
-            month: "short",
-            day: "numeric",
-        };
-        let dateToFormat = new Date(inputDate);
-
-        return dateToFormat.toLocaleDateString("en-US", options);
-    };
-
     onSubmitFormHandler = (expenseItem) => {
         const formData = { ...expenseItem };
-        this.formatDate(formData.expenseDate);
+        formatDate(formData.expenseDate);
         const newExpense = {
             id:
                 this.state.expenseData[this.state.expenseData.length - 1].id +
                 1,
             title: formData.expenseTitle,
             total: formData.expenseTotal,
-            date: this.formatDate(formData.expenseDate),
+            date: formatDate(formData.expenseDate),
         };
         return this.setState({
             expenseData: [...this.state.expenseData, newExpense],
@@ -72,16 +62,23 @@ class App extends Component {
 
     onFilterExpenseDataHandler = (expenseDateFromFilterComponent) => {
         console.log(expenseDateFromFilterComponent);
-        // return this.setState({
-        //     filterData: this.state.expenseData.filter((expense) => {
-        //         return expenseDateFromFilterComponent == expense;
-        //     }),
-        // });
+        this.setState({
+            filterData: this.state.expenseData.filter((expense) => {
+                return (
+                    extractExpenseYear(expense.date) ==
+                    expenseDateFromFilterComponent
+                );
+            }),
+        });
     };
 
     render() {
+        let dataToDisplay =
+            this.state.filterData.length > 0
+                ? this.state.filterData
+                : this.state.expenseData;
         console.log(this.state.filterData);
-        let mapExpenseState = this.state.expenseData.map((expenseItem) => {
+        let mapExpenseState = dataToDisplay.map((expenseItem) => {
             return (
                 <Expense
                     key={expenseItem.id}
@@ -92,7 +89,7 @@ class App extends Component {
                         //         ? expenseItem.title.slice(0, 10)
                         //         : expenseItem.title
                     }
-                    date={this.formatDate(expenseItem.date)}
+                    date={formatDate(expenseItem.date)}
                     total={expenseItem.total}
                 />
             );

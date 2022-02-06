@@ -1,20 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { FilterYearDiv } from "./styledComponents";
-const extractExpenseYear = (expenseDate) => {
-    let expenseYear = new Date(expenseDate);
-    return expenseYear.getFullYear();
-};
+import { extractExpenseYear } from "../commonFunction/commonFunc";
 function FilterExpenseByYear(props) {
+    let [filterYear, setFilterYear] = useState(0);
     let expenseDateMapping = props.expenseDateArray.map(
         (expenseDate, index) => {
             return (
-                <option
-                    key={index}
-                    value={extractExpenseYear(expenseDate)}
-                    onChange={(expenseDate) =>
-                        props.onFilterExpenseData(expenseDate)
-                    }
-                >
+                <option key={index} value={extractExpenseYear(expenseDate)}>
                     {extractExpenseYear(expenseDate)}
                 </option>
             );
@@ -25,7 +17,15 @@ function FilterExpenseByYear(props) {
             <form action="">
                 <FilterYearDiv>
                     <span>Filter by</span>
-                    <select name="expenseYear" id="expenseYear">
+                    <select
+                        value={filterYear}
+                        onChange={(e) => {
+                            setFilterYear(e.target.value);
+                            return props.onFilterExpenseData(e.target.value);
+                        }}
+                        name="expenseYear"
+                        id="expenseYear"
+                    >
                         <option key="All" value="all">
                             All
                         </option>

@@ -104,7 +104,7 @@ const ExpenseHeaderDiv = styled.div`
     margin: 0.5rem 0;
     padding: 0 2rem;
     height: calc(2rem + 2vh);
-    border-radius: 8px 8px 0 0;
+    border-radius: 8px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -118,8 +118,8 @@ const FilterYearDiv = styled.div`
     background: #797887;
     margin-bottom: -0.5rem;
     padding: 0 2rem;
-    height: calc(1.7rem + 1.7vh);
     border-radius: 8px 8px 0 0;
+    height: calc(1.7rem + 1.7vh);
     display: flex;
     flex-direction: row;
     justify-content: space-between;
