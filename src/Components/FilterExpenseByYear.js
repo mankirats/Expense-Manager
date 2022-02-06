@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { FilterYearDiv } from "./styledComponents";
 import { extractExpenseYear } from "../commonFunction/commonFunc";
+
 function FilterExpenseByYear(props) {
-    let [filterYear, setFilterYear] = useState(0);
     let expenseDateMapping = props.expenseDateArray.map(
         (expenseDate, index) => {
             return (
@@ -18,10 +18,9 @@ function FilterExpenseByYear(props) {
                 <FilterYearDiv>
                     <span>Filter by</span>
                     <select
-                        value={filterYear}
+                        value={props.filterYear}
                         onChange={(e) => {
-                            setFilterYear(e.target.value);
-                            return props.onFilterExpenseData(e.target.value);
+                            props.setFilterYear(e.target.value);
                         }}
                         name="expenseYear"
                         id="expenseYear"
