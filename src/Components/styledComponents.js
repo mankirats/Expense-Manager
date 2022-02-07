@@ -149,12 +149,17 @@ const PageHeader = styled.div`
     width: 100%;
     display: flex;
     align-items: center;
+    padding: 1.7rem;
+    font-weight: 700;
 `;
 
 const PageTitle = styled.span`
     justify-content: center;
 `;
-const ExpenseTotalHeader = styled.span``;
+const ExpenseTotalHeader = styled.span`
+    margin-left: auto;
+    font-weight: 600;
+`;
 
 export {
     ExpenseDiv,
