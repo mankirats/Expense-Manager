@@ -1,6 +1,5 @@
 import React from "react";
 import { FilterYearDiv } from "./styledComponents";
-import { extractExpenseYear } from "../commonFunction/commonFunc";
 
 function FilterExpenseByYear(props) {
     let expenseDateMapping = props.expenseDateArray.map(
