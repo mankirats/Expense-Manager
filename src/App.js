@@ -106,7 +106,15 @@ class App extends Component {
 
         return (
             <AppContainer>
-                <HeaderWithTotal></HeaderWithTotal>
+                <HeaderWithTotal
+                    expenseTotal={this.state.expenseData
+                        .map((expense) => {
+                            return Number(expense.total);
+                        })
+                        .reduce((totalExpense, currentExp) => {
+                            return (totalExpense += currentExp);
+                        })}
+                ></HeaderWithTotal>
                 <ExpenseContainerDiv>
                     <AddExpense
                         onSubmitForm={this.onSubmitFormHandler}
