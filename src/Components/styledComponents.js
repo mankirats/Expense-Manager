@@ -143,8 +143,23 @@ const FilterYearDiv = styled.div`
     }
 `;
 
+const PageHeader = styled.div`
+    background: #fabb52;
+    height: calc(2rem + 2vh);
+    width: 100%;
+    display: flex;
+    align-items: center;
+`;
+
+const PageTitle = styled.span`
+    justify-content: center;
+`;
+const ExpenseTotalHeader = styled.span``;
+
 export {
     ExpenseDiv,
+    PageTitle,
+    ExpenseTotalHeader,
     ExpenseEntryNumber,
     ExpenseTitle,
     ExpenseTotal,
@@ -158,4 +173,5 @@ export {
     ExpenseContainerDiv,
     ExpenseHeaderDiv,
     FilterYearDiv,
+    PageHeader,
 };
