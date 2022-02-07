@@ -3,7 +3,7 @@ import Expense from "./Components/Expense";
 import AddExpense from "./Forms/AddExpense";
 import FilterExpenseByYear from "./Components/FilterExpenseByYear";
 import { extractExpenseYear, formatDate } from "./commonFunction/commonFunc";
-
+import HeaderWithTotal from "./Components/HeaderWithTotal";
 import {
     AppContainer,
     ExpenseContainerDiv,
@@ -106,6 +106,7 @@ class App extends Component {
 
         return (
             <AppContainer>
+                <HeaderWithTotal></HeaderWithTotal>
                 <ExpenseContainerDiv>
                     <AddExpense
                         onSubmitForm={this.onSubmitFormHandler}
