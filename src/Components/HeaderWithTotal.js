@@ -5,8 +5,11 @@ function HeaderWithTotal(props) {
     return (
         <>
             <PageHeader>
-                <PageTitle>expense_manager</PageTitle>
-                <ExpenseTotalHeader>{props.expenseTotal}</ExpenseTotalHeader>
+                <PageTitle>expense manager</PageTitle>
+                <ExpenseTotalHeader>
+                    TOTAL EXPENDITURE:
+                    {props.expenseTotal == 0 ? 0 : props.expenseTotal}
+                </ExpenseTotalHeader>
             </PageHeader>
         </>
     );
