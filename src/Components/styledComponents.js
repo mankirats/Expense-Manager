@@ -1,4 +1,7 @@
 import styled from "styled-components";
+import { colorPalette } from "./colorPalette";
+
+const { primary, sixty, thirty, ten } = colorPalette;
 
 const ExpenseDiv = styled.div`
     position: relative;
@@ -84,9 +87,10 @@ const FormContainer = styled.div`
 const FormTitle = styled.div`
     color: white;
     text-align: right;
-    background: #797887;
+    background: ${sixty};
     padding: 0.2rem 1rem;
-    font-weight: 700;
+    /* font-weight: 700; */
+    color: #f0eeef;
     font-size: 1.05rem;
 `;
 
@@ -94,6 +98,7 @@ const AppContainer = styled.div`
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
+    background: #fffafa;
 `;
 
 const ExpenseContainerDiv = styled.div`
@@ -104,12 +109,13 @@ const ExpenseContainerDiv = styled.div`
 
 const ExpenseHeaderDiv = styled.div`
     position: relative;
-    background: #222831;
+    background: ${thirty};
     margin: 0.5rem 0;
     padding: 0 2rem;
     height: calc(2rem + 2vh);
     border-radius: 8px;
     display: flex;
+    color: ${thirty}
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
@@ -119,7 +125,7 @@ const ExpenseHeaderDiv = styled.div`
 
 const FilterYearDiv = styled.div`
     position: relative;
-    background: #797887;
+    background: ${ten};
     margin-bottom: -0.5rem;
     padding: 0 2rem;
     border-radius: 8px 8px 0 0;
@@ -129,28 +135,30 @@ const FilterYearDiv = styled.div`
     justify-content: space-between;
     align-items: center;
     font-weight: bold;
+    color: ${primary};
     & select {
         background: transparent;
-        color: white;
         font-size: 1rem;
+        color: ${primary};
         font-weight: 600;
     }
     & option {
         border: transparent;
         outline: 0;
-        color: black;
+        color: ${primary};
         background: transparent;
     }
 `;
 
 const PageHeader = styled.div`
-    background: #fabb52;
+    background: ${thirty};
     height: calc(2rem + 2vh);
     width: 100%;
     display: flex;
     align-items: center;
     padding: 1.7rem;
     font-weight: 700;
+    color: #f0eeef;
 `;
 
 const PageTitle = styled.span`
