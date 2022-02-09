@@ -8,6 +8,8 @@ import {
     AppContainer,
     ExpenseContainerDiv,
     ExpenseHeaderDiv,
+    DisplayExpenseFormButton,
+    DisplayExpenseFormContainer,
 } from "./Components/styledComponents";
 
 class App extends Component {
@@ -41,6 +43,7 @@ class App extends Component {
                 },
             ],
             filterYear: 0,
+            displayAddExpense: false,
         };
     }
     filterData = [];
@@ -80,6 +83,15 @@ class App extends Component {
     //     }));
     // };
 
+    displayAddExpense = () => {
+        this.setState((prevState) => {
+            return {
+                ...prevState,
+                displayAddExpense: !this.state.displayAddExpense,
+            };
+        });
+    };
+
     render() {
         const filterData = this.state.expenseData.filter((expense) => {
             return extractExpenseYear(expense.date) == this.state.filterYear;
@@ -116,9 +128,26 @@ class App extends Component {
                         })}
                 ></HeaderWithTotal>
                 <ExpenseContainerDiv>
-                    <AddExpense
-                        onSubmitForm={this.onSubmitFormHandler}
-                    ></AddExpense>
+                    {!this.state.displayAddExpense ? (
+                        <DisplayExpenseFormContainer>
+                            <DisplayExpenseFormButton
+                                onClick={this.displayAddExpense}
+                            >
+                                Add Expense
+                            </DisplayExpenseFormButton>
+                        </DisplayExpenseFormContainer>
+                    ) : (
+                        <></>
+                    )}
+
+                    {this.state.displayAddExpense ? (
+                        <AddExpense
+                            cancelForm={this.displayAddExpense}
+                            onSubmitForm={this.onSubmitFormHandler}
+                        ></AddExpense>
+                    ) : (
+                        <></>
+                    )}
                     <ExpenseHeaderDiv>
                         <span>Date</span>
                         <span>Title</span>

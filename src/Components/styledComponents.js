@@ -56,6 +56,19 @@ const InputField = styled.input`
     padding: 0.2rem;
     background: white;
 `;
+const CancelButton = styled.button`
+    background: black;
+    letter-spacing: 0.5px;
+    margin: 4px 4px;
+    padding: 0.3rem;
+    color: ${color1};
+    /* width: calc(95% / 2); */
+    outline: none;
+    font-size: 0.9rem;
+    border-radius: 4px;
+    font-weight: bold;
+    border: 1px solid ${color5};
+`;
 const SubmitButton = styled.button`
     background: white;
     letter-spacing: 0.5px;
@@ -101,6 +114,7 @@ const AppContainer = styled.div`
 `;
 
 const ExpenseContainerDiv = styled.div`
+    width: 45vw;
     margin: 1rem 0;
     padding: 1rem;
     max-width: 55vw;
@@ -169,7 +183,30 @@ const ExpenseTotalHeader = styled.span`
     color: ${color3};
 `;
 
+const DisplayExpenseFormContainer = styled.div`
+    height: 3rem;
+    width: 100%;
+    background: ${color3};
+    display: grid;
+
+    place-items: center;
+`;
+const DisplayExpenseFormButton = styled.button`
+    height: 2rem;
+    outline: none;
+    border: 0;
+    border-radius: 4px;
+    color: ${color4};
+    letter-spacing: 0.5px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    background: ${color1};
+`;
+
 export {
+    CancelButton,
+    DisplayExpenseFormButton,
+    DisplayExpenseFormContainer,
     ExpenseDiv,
     PageTitle,
     ExpenseTotalHeader,
