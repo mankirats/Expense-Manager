@@ -6,6 +6,7 @@ import {
     StyledForm,
     SubmitButton,
     InputField,
+    CancelButton,
 } from "../Components/styledComponents";
 
 function AddExpense(props) {
@@ -66,6 +67,7 @@ function AddExpense(props) {
                         }))
                     }
                 />
+                <CancelButton onClick={props.cancelForm}>Cancel</CancelButton>
                 <SubmitButton type="submit">ADD EXPENSE</SubmitButton>
             </StyledForm>
         </FormContainer>
