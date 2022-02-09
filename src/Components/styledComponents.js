@@ -1,11 +1,11 @@
 import styled from "styled-components";
 import { colorPalette } from "./colorPalette";
 
-const { primary, sixty, thirty, ten } = colorPalette;
+const { color1, color2, color3, color4, color5 } = colorPalette;
 
 const ExpenseDiv = styled.div`
     position: relative;
-    background: #393e46;
+    background: ${color4};
     margin: 0.2rem 0;
     /* width: 45vw; */
     padding: 0 2rem;
@@ -15,6 +15,7 @@ const ExpenseDiv = styled.div`
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    color: ${color5};
 `;
 
 const ExpenseEntryNumber = styled.span`
@@ -60,12 +61,13 @@ const SubmitButton = styled.button`
     letter-spacing: 0.5px;
     margin: 4px 4px;
     padding: 0.3rem;
-    color: #e16428;
+    color: ${color1};
     width: calc(95% / 2);
     outline: none;
     font-size: 0.9rem;
     border-radius: 4px;
     font-weight: bold;
+    border: 1px solid ${color5};
 `;
 
 const StyledForm = styled.form`
@@ -74,7 +76,7 @@ const StyledForm = styled.form`
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    background: #f9f9f9;
+    background: ${color5};
     border-radius: 4px;
 `;
 const FormContainer = styled.div`
@@ -85,12 +87,11 @@ const FormContainer = styled.div`
 `;
 
 const FormTitle = styled.div`
-    color: white;
     text-align: right;
-    background: ${sixty};
+    background: ${color2};
     padding: 0.2rem 1rem;
     /* font-weight: 700; */
-    color: #f0eeef;
+    color: ${color1};
     font-size: 1.05rem;
 `;
 
@@ -109,13 +110,13 @@ const ExpenseContainerDiv = styled.div`
 
 const ExpenseHeaderDiv = styled.div`
     position: relative;
-    background: ${thirty};
+    background: ${color1};
     margin: 0.5rem 0;
     padding: 0 2rem;
     height: calc(2rem + 2vh);
     border-radius: 8px;
     display: flex;
-    color: ${thirty}
+    color: ${color3}
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
@@ -125,7 +126,7 @@ const ExpenseHeaderDiv = styled.div`
 
 const FilterYearDiv = styled.div`
     position: relative;
-    background: ${ten};
+    background: ${color3};
     margin-bottom: -0.5rem;
     padding: 0 2rem;
     border-radius: 8px 8px 0 0;
@@ -135,30 +136,30 @@ const FilterYearDiv = styled.div`
     justify-content: space-between;
     align-items: center;
     font-weight: bold;
-    color: ${primary};
+    color: ${color4};
     & select {
         background: transparent;
         font-size: 1rem;
-        color: ${primary};
+        color: ${color4};
         font-weight: 600;
     }
     & option {
         border: transparent;
         outline: 0;
-        color: ${primary};
+        color: ${color4};
         background: transparent;
     }
 `;
 
 const PageHeader = styled.div`
-    background: ${thirty};
+    /* background: ${color1}; */
     height: calc(2rem + 2vh);
     width: 100%;
     display: flex;
     align-items: center;
-    padding: 1.7rem;
-    font-weight: 700;
-    color: #f0eeef;
+    padding: 1.7rem 5rem;
+    font-weight: 800;
+    color: ${color2};
 `;
 
 const PageTitle = styled.span`
@@ -167,6 +168,7 @@ const PageTitle = styled.span`
 const ExpenseTotalHeader = styled.span`
     margin-left: auto;
     font-weight: 600;
+    color: ${color3};
 `;
 
 export {
