@@ -1,11 +1,11 @@
 export const colorPalette = {
-    color1: "#122629",
+    color1: "#6886C5",
     // dark blue
-    color2: "#F7645A",
+    color2: "#FFACB7",
     // orange
-    color3: "#FCEF00",
+    color3: "#FFE0AC",
     // light blue
-    color4: "#7154E4",
+    color4: "#F9F9F9",
     // Yellow
     color5: "#FFFFFF",
 };
