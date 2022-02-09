@@ -15,7 +15,7 @@ const ExpenseDiv = styled.div`
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    color: ${color5};
+    color: ${color1};
 `;
 
 const ExpenseEntryNumber = styled.span`
@@ -80,8 +80,6 @@ const StyledForm = styled.form`
     border-radius: 4px;
 `;
 const FormContainer = styled.div`
-    /* padding: 0.2rem; */
-    border: 1px solid #393e46;
     border-radius: 4px;
     background: #f9f9f9;
 `;
@@ -91,15 +89,15 @@ const FormTitle = styled.div`
     background: ${color2};
     padding: 0.2rem 1rem;
     /* font-weight: 700; */
-    color: ${color1};
+    color: ${color4};
     font-size: 1.05rem;
+    border-radius: 4px 4px 0 0;
 `;
 
 const AppContainer = styled.div`
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    background: #fffafa;
 `;
 
 const ExpenseContainerDiv = styled.div`
@@ -136,30 +134,30 @@ const FilterYearDiv = styled.div`
     justify-content: space-between;
     align-items: center;
     font-weight: bold;
-    color: ${color4};
+    color: ${color1};
     & select {
         background: transparent;
         font-size: 1rem;
-        color: ${color4};
+        color: ${color1};
         font-weight: 600;
     }
     & option {
         border: transparent;
         outline: 0;
-        color: ${color4};
+        color: ${color1};
         background: transparent;
     }
 `;
 
 const PageHeader = styled.div`
-    /* background: ${color1}; */
+    background: ${color1};
     height: calc(2rem + 2vh);
     width: 100%;
     display: flex;
     align-items: center;
     padding: 1.7rem 5rem;
     font-weight: 800;
-    color: ${color2};
+    color: ${color4};
 `;
 
 const PageTitle = styled.span`
