@@ -59,8 +59,12 @@ class App extends Component {
             total: formData.expenseTotal,
             date: formatDate(formData.expenseDate),
         };
-        return this.setState({
-            expenseData: [...this.state.expenseData, newExpense],
+        return this.setState((prevState) => {
+            return {
+                ...prevState,
+                expenseData: [...this.state.expenseData, newExpense],
+                // displayAddExpense: !this.state.displayAddExpense,
+            };
         });
     };
 
