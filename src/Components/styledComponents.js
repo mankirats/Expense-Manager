@@ -78,7 +78,7 @@ const InputField = styled.input`
     width: 100%;
     font-size: 0.9rem;
     border: 1.5px solid ${color1};
-    border-radius: 4px;
+    border-radius: 5px;
     margin: 3px 0px;
     padding: 0.4rem;
     background: white;
@@ -88,13 +88,13 @@ const InputField = styled.input`
 `;
 const CancelButton = styled.button`
     letter-spacing: 0.5px;
-    margin: 4px 4px;
+    margin: 5px 5px;
     padding: 0.3rem;
     color: ${color1};
     width: calc(100% / 2 - 8px);
     outline: none;
     font-size: 0.9rem;
-    border-radius: 4px;
+    border-radius: 5px;
     font-weight: bold;
     background: ${color4};
     border: 1.5px solid ${color1};
@@ -102,12 +102,12 @@ const CancelButton = styled.button`
 const SubmitButton = styled.button`
     background: ${color1};
     letter-spacing: 0.5px;
-    margin: 4px 4px;
+    margin: 5px 5px;
     padding: 0.3rem;
     color: ${color4};
     outline: none;
     font-size: 0.9rem;
-    border-radius: 4px;
+    border-radius: 5px;
     font-weight: bold;
     border: 1px solid ${color5};
     width: calc(100% / 2 - 8px);
@@ -120,10 +120,10 @@ const StyledForm = styled.form`
     align-items: center;
     flex-wrap: wrap;
     /* background: ${color5}; */
-    border-radius: 4px;
+    border-radius: 5px;
 `;
 const FormContainer = styled.div`
-    border-radius: 4px;
+    border-radius: 5px;
     background: ${color4};
 `;
 
@@ -134,7 +134,7 @@ const FormTitle = styled.div`
     /* font-weight: 700; */
     color: ${color1};
     font-size: 1.05rem;
-    border-radius: 4px 4px 0 0;
+    border-radius: 5px 5px 0 0;
 `;
 
 const AppContainer = styled.div`
@@ -231,7 +231,7 @@ const DisplayExpenseFormContainer = styled.div`
     width: 100%;
     background: ${color3};
     display: grid;
-    border-radius: 4px;
+    border-radius: 5px;
     place-items: center;
     margin: 1rem 0;
 `;
@@ -250,8 +250,8 @@ const DisplayExpenseFormButton = styled.button`
 const Validations = styled.div`
     color: ${errorCol};
     width: calc(100% - 20px);
-    font-weight: 500;
-    font-size: 0.9rem;
+    font-weight: 600;
+    font-size: 0.8rem;
     text-align: justify;
 `;
 

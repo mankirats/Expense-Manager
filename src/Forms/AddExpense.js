@@ -39,9 +39,6 @@ function AddExpense(props) {
         noTitle: "Please enter Expense Title",
     };
 
-    // if (this.state.touched.expenseTitle) {
-    // }
-
     return (
         <FormContainer>
             <FormTitle>add expense</FormTitle>
@@ -60,8 +57,21 @@ function AddExpense(props) {
                                 expenseTitle: e.target.value.trim(),
                             }))
                         }
+                        onBlur={(e) => {
+                            setExpenseItem((prevState) => ({
+                                ...prevState,
+                                touched: {
+                                    expenseTitle: true,
+                                },
+                            }));
+                        }}
                     />
-                    <Validations>hello</Validations>
+                    {expenseItem.touched.expenseTitle &&
+                    expenseItem.expenseTitle == "" ? (
+                        <Validations>{errors.noTitle}</Validations>
+                    ) : (
+                        <></>
+                    )}
                 </TitleContainerDiv>
                 <InputContainerDiv>
                     <FieldLabel>Expense Date</FieldLabel>
@@ -97,7 +107,6 @@ function AddExpense(props) {
                         }
                     />
                 </InputContainerDiv>
-                <Validations>hello</Validations>
                 <ButtonContainerDiv>
                     <CancelButton onClick={props.cancelForm}>
                         Cancel
