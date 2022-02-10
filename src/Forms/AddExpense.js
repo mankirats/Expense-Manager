@@ -36,6 +36,11 @@ function AddExpense(props) {
             expenseItem.expenseDate.length == 0 ||
             expenseItem.expenseTotal.length == 0
         ) {
+            setExpenseTouch({
+                expenseTitle: true,
+                expenseTotal: true,
+                expenseDate: true,
+            });
             return;
         }
         props.onSubmitForm(expenseItem);

@@ -76,16 +76,6 @@ class App extends Component {
             };
         });
     };
-    // onFilterExpenseDataHandler = (expenseDateFromFilterComponent) => {
-    //     // console.log(expenseDateFromFilterComponent);
-    //     console.log(this.filterData);
-    //     return (this.filterData = this.state.expenseData.filter((expense) => {
-    //         return (
-    //             extractExpenseYear(expense.date) ==
-    //             expenseDateFromFilterComponent
-    //         );
-    //     }));
-    // };
 
     displayAddExpense = () => {
         this.setState((prevState) => {
@@ -155,7 +145,7 @@ class App extends Component {
                     <ExpenseHeaderDiv>
                         <span>Date</span>
                         <span>Title</span>
-                        <span>Total</span>
+                        <span>Amount</span>
                     </ExpenseHeaderDiv>
                     <FilterExpenseByYear
                         filterYear={this.state.filterYear}
