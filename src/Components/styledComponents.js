@@ -223,7 +223,9 @@ const PageTitle = styled.span`
 `;
 const ExpenseTotalHeader = styled.span`
     margin-left: auto;
-    font-weight: 600;
+    font-size: 1rem;
+    letter-spacing: 0.5px;
+    font-weight: 500;
 `;
 
 const DisplayExpenseFormContainer = styled.div`

@@ -7,7 +7,7 @@ function HeaderWithTotal(props) {
             <PageHeader>
                 <PageTitle>EXPENSE MANAGER</PageTitle>
                 <ExpenseTotalHeader>
-                    TOTAL EXPENDITURE:
+                    TOTAL EXPENDITURE: &nbsp;
                     {props.expenseTotal == 0 ? 0 : props.expenseTotal}
                 </ExpenseTotalHeader>
             </PageHeader>
