@@ -67,11 +67,11 @@ const FieldLabel = styled.span`
 
 const TitleContainerDiv = styled.div`
     width: calc(100% - 20px);
-    margin: 2px 2px;
+    margin: 0px 2px;
 `;
 const ButtonContainerDiv = styled.div`
-    width: calc(100% - 10px);
-    margin: 5px 2px;
+    width: calc(100% - 20px);
+    margin: -3px 2px;
 `;
 const InputField = styled.input`
     outline: none;
@@ -91,7 +91,7 @@ const CancelButton = styled.button`
     margin: 5px 5px;
     padding: 0.3rem;
     color: ${color1};
-    width: calc(100% / 2 - 8px);
+    width: calc(100% / 2 - 10px);
     outline: none;
     font-size: 0.9rem;
     border-radius: 5px;
@@ -110,7 +110,7 @@ const SubmitButton = styled.button`
     border-radius: 5px;
     font-weight: bold;
     border: 1px solid ${color5};
-    width: calc(100% / 2 - 8px);
+    width: calc(100% / 2 - 10px);
 `;
 
 const StyledForm = styled.form`
@@ -131,9 +131,9 @@ const FormTitle = styled.div`
     text-align: right;
     background: ${color3};
     padding: 0.2rem 1rem;
-    /* font-weight: 700; */
+    font-weight: 600;
     color: ${color1};
-    font-size: 1.05rem;
+    font-size: 1rem;
     border-radius: 5px 5px 0 0;
 `;
 

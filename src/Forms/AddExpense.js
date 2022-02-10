@@ -19,11 +19,11 @@ function AddExpense(props) {
         expenseTitle: "",
         expenseTotal: "",
         expenseDate: "",
-        touched: {
-            expenseTitle: false,
-            expenseTotal: false,
-            expenseDate: false,
-        },
+    });
+    const [expenseTouch, setExpenseTouch] = useState({
+        expenseTitle: false,
+        expenseTotal: false,
+        expenseDate: false,
     });
 
     const submitForm = (event) => {
@@ -31,17 +31,36 @@ function AddExpense(props) {
         // console.log(
         //     `${expenseItem.expenseTitle} ${expenseItem.expenseTotal} ${expenseItem.expenseDate}`
         // );
+        if (
+            expenseItem.expenseTitle.length == 0 ||
+            expenseItem.expenseDate.length == 0 ||
+            expenseItem.expenseTotal.length == 0
+        ) {
+            return;
+        }
         props.onSubmitForm(expenseItem);
-    };
 
+        setExpenseItem({
+            expenseTitle: "",
+            expenseTotal: "",
+            expenseDate: "",
+        });
+        setExpenseTouch({
+            expenseTitle: false,
+            expenseTotal: false,
+            expenseDate: false,
+        });
+    };
     const errors = {
-        titleLessThan5Char: "Expense title should be minimum 5 characters.",
+        titleLessThan3Char: "Expense title must be minimum 3 characters.",
         noTitle: "Please enter Expense Title",
+        noDate: "Please enter Expense Date",
+        noAmount: "Please enter Expense Amount",
     };
 
     return (
         <FormContainer>
-            <FormTitle>add expense</FormTitle>
+            <FormTitle>Add Expense</FormTitle>
             <StyledForm onSubmit={submitForm}>
                 <TitleContainerDiv>
                     <FieldLabel>Expense Title</FieldLabel>
@@ -51,24 +70,25 @@ function AddExpense(props) {
                         id="title"
                         value={expenseItem.expenseTitle}
                         // placeholder="Expense Title"
-                        onChange={(e) =>
+                        onChange={(e) => {
                             setExpenseItem((prevState) => ({
                                 ...prevState,
                                 expenseTitle: e.target.value.trim(),
-                            }))
-                        }
+                            }));
+                        }}
                         onBlur={(e) => {
-                            setExpenseItem((prevState) => ({
+                            setExpenseTouch((prevState) => ({
                                 ...prevState,
-                                touched: {
-                                    expenseTitle: true,
-                                },
+                                expenseTitle: true,
                             }));
                         }}
                     />
-                    {expenseItem.touched.expenseTitle &&
+                    {expenseTouch.expenseTitle &&
                     expenseItem.expenseTitle == "" ? (
                         <Validations>{errors.noTitle}</Validations>
+                    ) : expenseTouch.expenseTitle &&
+                      expenseItem.expenseTitle.length < 3 ? (
+                        <Validations>{errors.titleLessThan3Char}</Validations>
                     ) : (
                         <></>
                     )}
@@ -87,7 +107,19 @@ function AddExpense(props) {
                                 expenseDate: e.target.value,
                             }))
                         }
+                        onBlur={(e) => {
+                            setExpenseTouch((prevState) => ({
+                                ...prevState,
+                                expenseDate: true,
+                            }));
+                        }}
                     />
+                    {expenseTouch.expenseDate &&
+                    expenseItem.expenseDate == "" ? (
+                        <Validations>{errors.noDate}</Validations>
+                    ) : (
+                        <>&nbsp;</>
+                    )}
                 </InputContainerDiv>
 
                 <InputContainerDiv>
@@ -105,7 +137,19 @@ function AddExpense(props) {
                                 expenseTotal: e.target.value,
                             }))
                         }
+                        onBlur={(e) => {
+                            setExpenseTouch((prevState) => ({
+                                ...prevState,
+                                expenseTotal: true,
+                            }));
+                        }}
                     />
+                    {expenseTouch.expenseTotal &&
+                    expenseItem.expenseTotal == "" ? (
+                        <Validations>{errors.noAmount}</Validations>
+                    ) : (
+                        <>&nbsp;</>
+                    )}
                 </InputContainerDiv>
                 <ButtonContainerDiv>
                     <CancelButton onClick={props.cancelForm}>
