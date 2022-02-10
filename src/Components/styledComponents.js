@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { devices } from "../devices";
 import { colorPalette } from "./colorPalette";
 
-const { color1, color2, color3, color4, color5 } = colorPalette;
+const { color1, color2, color3, color4, color5, errorCol } = colorPalette;
 
 const ExpenseDiv = styled.div`
     position: relative;
@@ -51,12 +51,23 @@ const ExpenseDate = styled.span`
     overflow-wrap: break-word;
 `;
 const InputContainerDiv = styled.div`
-    width: calc(100% / 3 - 10px);
+    width: calc(100% / 2 - 10px);
     margin: 5px 2px;
 
     @media ${devices.mobileL} {
-        width: calc(100% - 10px);
+        width: calc(100% - 25px);
     }
+`;
+
+const FieldLabel = styled.span`
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: ${color1};
+`;
+
+const TitleContainerDiv = styled.div`
+    width: calc(100% - 20px);
+    margin: 2px 2px;
 `;
 const ButtonContainerDiv = styled.div`
     width: calc(100% - 10px);
@@ -133,13 +144,13 @@ const AppContainer = styled.div`
 `;
 
 const ExpenseContainerDiv = styled.div`
-    width: 45vw;
+    width: calc(35rem + 10vw);
     margin: 1rem 0;
     padding: 1rem;
     /* max-width: 55vw; */
     @media ${devices.mobileL} {
         width: calc(100% - 10px);
-        padding: 2rem;
+        padding: 1rem;
     }
 `;
 
@@ -216,7 +227,7 @@ const ExpenseTotalHeader = styled.span`
 `;
 
 const DisplayExpenseFormContainer = styled.div`
-    height: 3rem;
+    height: 4rem;
     width: 100%;
     background: ${color3};
     display: grid;
@@ -225,7 +236,7 @@ const DisplayExpenseFormContainer = styled.div`
     margin: 1rem 0;
 `;
 const DisplayExpenseFormButton = styled.button`
-    height: 2rem;
+    height: 2.5rem;
     width: 8rem;
     outline: none;
     border: 0;
@@ -236,7 +247,17 @@ const DisplayExpenseFormButton = styled.button`
     background: ${color1};
 `;
 
+const Validations = styled.div`
+    color: ${errorCol};
+    width: calc(100% - 20px);
+    font-weight: 500;
+    font-size: 0.9rem;
+    text-align: justify;
+`;
+
 export {
+    TitleContainerDiv,
+    Validations,
     InputContainerDiv,
     ButtonContainerDiv,
     CancelButton,
@@ -259,4 +280,5 @@ export {
     ExpenseHeaderDiv,
     FilterYearDiv,
     PageHeader,
+    FieldLabel,
 };

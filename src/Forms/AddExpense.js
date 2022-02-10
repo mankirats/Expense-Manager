@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styled from "styled-components";
+
 import {
     FormTitle,
     FormContainer,
@@ -9,6 +9,9 @@ import {
     CancelButton,
     InputContainerDiv,
     ButtonContainerDiv,
+    TitleContainerDiv,
+    Validations,
+    FieldLabel,
 } from "../Components/styledComponents";
 
 function AddExpense(props) {
@@ -31,32 +34,42 @@ function AddExpense(props) {
         props.onSubmitForm(expenseItem);
     };
 
+    const errors = {
+        titleLessThan5Char: "Expense title should be minimum 5 characters.",
+        noTitle: "Please enter Expense Title",
+    };
+
+    // if (this.state.touched.expenseTitle) {
+    // }
+
     return (
         <FormContainer>
             <FormTitle>add expense</FormTitle>
             <StyledForm onSubmit={submitForm}>
-                <InputContainerDiv>
+                <TitleContainerDiv>
+                    <FieldLabel>Expense Title</FieldLabel>
                     <InputField
                         type="text"
                         name="title"
                         id="title"
                         value={expenseItem.expenseTitle}
-                        placeholder="Expense Title"
+                        // placeholder="Expense Title"
                         onChange={(e) =>
                             setExpenseItem((prevState) => ({
                                 ...prevState,
-                                expenseTitle: e.target.value,
+                                expenseTitle: e.target.value.trim(),
                             }))
                         }
                     />
-                </InputContainerDiv>
-
+                    <Validations>hello</Validations>
+                </TitleContainerDiv>
                 <InputContainerDiv>
+                    <FieldLabel>Expense Date</FieldLabel>
                     <InputField
                         type="date"
                         name="date"
                         id="date"
-                        placeholder="Expense Date"
+                        // placeholder="Expense Date"
                         value={expenseItem.expenseDate}
                         onChange={(e) =>
                             setExpenseItem((prevState) => ({
@@ -66,12 +79,15 @@ function AddExpense(props) {
                         }
                     />
                 </InputContainerDiv>
+
                 <InputContainerDiv>
+                    <FieldLabel>Expense Amount</FieldLabel>
+
                     <InputField
                         type="number"
                         name="total"
                         id="total"
-                        placeholder="Expense Total"
+                        // placeholder="Expense Total"
                         value={expenseItem.expenseTotal}
                         onChange={(e) =>
                             setExpenseItem((prevState) => ({
@@ -81,6 +97,7 @@ function AddExpense(props) {
                         }
                     />
                 </InputContainerDiv>
+                <Validations>hello</Validations>
                 <ButtonContainerDiv>
                     <CancelButton onClick={props.cancelForm}>
                         Cancel
