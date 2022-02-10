@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { devices } from "../devices";
 import { colorPalette } from "./colorPalette";
 
 const { color1, color2, color3, color4, color5 } = colorPalette;
@@ -16,6 +17,8 @@ const ExpenseDiv = styled.div`
     justify-content: space-between;
     align-items: center;
     color: ${color1};
+    font-size: 1rem;
+    font-weight: 500;
 `;
 
 const ExpenseEntryNumber = styled.span`
@@ -40,69 +43,85 @@ const ExpenseTitle = styled.span`
 const ExpenseTotal = styled.span`
     width: calc(100% / 3);
     text-align: right;
+    overflow-wrap: break-word;
 `;
 const ExpenseDate = styled.span`
     text-align: left;
     width: calc(100% / 3);
+    overflow-wrap: break-word;
 `;
+const InputContainerDiv = styled.div`
+    width: calc(100% / 3 - 10px);
+    margin: 5px 2px;
 
+    @media ${devices.mobileL} {
+        width: calc(100% - 10px);
+    }
+`;
+const ButtonContainerDiv = styled.div`
+    width: calc(100% - 10px);
+    margin: 5px 2px;
+`;
 const InputField = styled.input`
-    width: calc(95% / 2);
     outline: none;
+    width: 100%;
     font-size: 0.9rem;
-    border: 1px solid #393e46;
+    border: 1.5px solid ${color1};
     border-radius: 4px;
-    margin: 4px 2px;
-    padding: 0.2rem;
+    margin: 3px 0px;
+    padding: 0.4rem;
     background: white;
+    &:nth-child(1) {
+        width: 100%;
+    }
 `;
 const CancelButton = styled.button`
-    background: black;
     letter-spacing: 0.5px;
     margin: 4px 4px;
     padding: 0.3rem;
     color: ${color1};
-    /* width: calc(95% / 2); */
+    width: calc(100% / 2 - 8px);
     outline: none;
     font-size: 0.9rem;
     border-radius: 4px;
     font-weight: bold;
-    border: 1px solid ${color5};
+    background: ${color4};
+    border: 1.5px solid ${color1};
 `;
 const SubmitButton = styled.button`
-    background: white;
+    background: ${color1};
     letter-spacing: 0.5px;
     margin: 4px 4px;
     padding: 0.3rem;
-    color: ${color1};
-    width: calc(95% / 2);
+    color: ${color4};
     outline: none;
     font-size: 0.9rem;
     border-radius: 4px;
     font-weight: bold;
     border: 1px solid ${color5};
+    width: calc(100% / 2 - 8px);
 `;
 
 const StyledForm = styled.form`
-    padding: 0.2rem;
     display: flex;
+    padding: 0.2rem;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    background: ${color5};
+    /* background: ${color5}; */
     border-radius: 4px;
 `;
 const FormContainer = styled.div`
     border-radius: 4px;
-    background: #f9f9f9;
+    background: ${color4};
 `;
 
 const FormTitle = styled.div`
     text-align: right;
-    background: ${color2};
+    background: ${color3};
     padding: 0.2rem 1rem;
     /* font-weight: 700; */
-    color: ${color4};
+    color: ${color1};
     font-size: 1.05rem;
     border-radius: 4px 4px 0 0;
 `;
@@ -117,7 +136,11 @@ const ExpenseContainerDiv = styled.div`
     width: 45vw;
     margin: 1rem 0;
     padding: 1rem;
-    max-width: 55vw;
+    /* max-width: 55vw; */
+    @media ${devices.mobileL} {
+        width: calc(100% - 10px);
+        padding: 2rem;
+    }
 `;
 
 const ExpenseHeaderDiv = styled.div`
@@ -138,7 +161,7 @@ const ExpenseHeaderDiv = styled.div`
 
 const FilterYearDiv = styled.div`
     position: relative;
-    background: ${color3};
+    background: ${color2};
     margin-bottom: -0.5rem;
     padding: 0 2rem;
     border-radius: 8px 8px 0 0;
@@ -148,12 +171,14 @@ const FilterYearDiv = styled.div`
     justify-content: space-between;
     align-items: center;
     font-weight: bold;
-    color: ${color1};
+    color: ${color4};
     & select {
         background: transparent;
         font-size: 1rem;
-        color: ${color1};
+        color: inherit;
         font-weight: 600;
+        outline: 0;
+        border: 0;
     }
     & option {
         border: transparent;
@@ -172,15 +197,22 @@ const PageHeader = styled.div`
     padding: 1.7rem 5rem;
     font-weight: 800;
     color: ${color4};
+    @media ${devices.mobileL} {
+        padding: 1.5rem 1rem;
+        font-size: 0.8rem;
+        font-weight: 600;
+    }
 `;
 
 const PageTitle = styled.span`
     justify-content: center;
+    @media ${devices.mobileL} {
+        width: 100%;
+    }
 `;
 const ExpenseTotalHeader = styled.span`
     margin-left: auto;
     font-weight: 600;
-    color: ${color3};
 `;
 
 const DisplayExpenseFormContainer = styled.div`
@@ -188,14 +220,15 @@ const DisplayExpenseFormContainer = styled.div`
     width: 100%;
     background: ${color3};
     display: grid;
-
+    border-radius: 4px;
     place-items: center;
+    margin: 1rem 0;
 `;
 const DisplayExpenseFormButton = styled.button`
     height: 2rem;
+    width: 8rem;
     outline: none;
     border: 0;
-    border-radius: 4px;
     color: ${color4};
     letter-spacing: 0.5px;
     font-weight: 600;
@@ -204,6 +237,8 @@ const DisplayExpenseFormButton = styled.button`
 `;
 
 export {
+    InputContainerDiv,
+    ButtonContainerDiv,
     CancelButton,
     DisplayExpenseFormButton,
     DisplayExpenseFormContainer,
