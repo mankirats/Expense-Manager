@@ -130,7 +130,7 @@ const FormContainer = styled.div`
 const FormTitle = styled.div`
     text-align: right;
     background: ${color3};
-    padding: 0.2rem 1rem;
+    padding: 0.3rem 1rem;
     font-weight: 600;
     color: ${color1};
     font-size: 1rem;
