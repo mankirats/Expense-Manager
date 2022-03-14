@@ -29,6 +29,13 @@ const userSchema = mongoose.Schema(
     { timestamps: true }
 );
 
+userSchema.methods.toJSON = function () {
+    const user = this;
+    const userObject = user.toObject();
+    delete userObject.tokens;
+    return userObject;
+};
+
 userSchema.methods.generateAuthToken = function () {
     const user = this;
     try {
@@ -42,6 +49,13 @@ userSchema.methods.generateAuthToken = function () {
     } catch (err) {
         console.log(err.message);
     }
+};
+
+userSchema.methods.verifyAuthToken = function () {
+    const user = this;
+    // try{
+
+    // }
 };
 
 userSchema.pre("save", async function (next) {
