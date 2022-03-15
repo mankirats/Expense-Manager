@@ -9,24 +9,21 @@ router.get("/api/v1/userprofile", auth, (req, res) => {
 });
 
 router.post("/api/v1/userlogin", async (req, res) => {
-    const user = await user.findByCredentials(req.body);
     try {
-        if (!user) {
-            res.status(400).send({
-                status: 400,
-                message: "Credentials entered are invalid",
-            });
-        }
+        const { email, password } = req.body;
 
+        const user = await User.findByCredentials(email, password);
+        const token = user.generateAuthToken();
         res.status(200).send({
-            status: 400,
-            message: "Credentials entered are invalid",
+            status: 200,
+            message: "Log in Successful",
             data: user,
+            generatedToken: token,
         });
     } catch (err) {
         res.status(400).send({
             status: 400,
-            message: message.err,
+            message: err.message,
         });
     }
 });
@@ -36,13 +33,13 @@ router.post("/api/v1/register", async (req, res) => {
         const user = new User(req.body);
         const result = await user.save();
         const token1 = result.generateAuthToken();
-        res.send({
-            status: 200,
+        res.status(201).send({
+            status: 201,
             data: result,
             generatedToken: token1,
         });
     } catch (err) {
-        res.send(err.message);
+        res.status(400).send(err.message);
     }
 });
 
