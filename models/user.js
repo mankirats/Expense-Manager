@@ -30,20 +30,19 @@ const userSchema = mongoose.Schema(
 );
 
 userSchema.statics.findByCredentials = async (userEmail, userPassword) => {
-    const user = await user.find({
+    const user = await User.findOne({
         email: userEmail,
     });
-
     if (!user) {
-        return "Incorrect credentials";
+        throw new Error("Credentials provided are incorrect. Please try again");
     }
 
-    const validPassword = bcrypt.compare(user.password, userPassword);
-
+    const validPassword = await bcrypt.compare(userPassword, user.password);
     if (!validPassword) {
-        return "Incorrect credentials";
+        throw new Error(
+            "Credentials provided are incorrect. Please try again11"
+        );
     }
-
     return user;
 };
 
@@ -51,6 +50,7 @@ userSchema.methods.toJSON = function () {
     const user = this;
     const userObject = user.toObject();
     delete userObject.tokens;
+    delete userObject.password;
     return userObject;
 };
 
@@ -65,7 +65,7 @@ userSchema.methods.generateAuthToken = function () {
         user.save();
         return token;
     } catch (err) {
-        console.log(err.message);
+        res.send(err.message);
     }
 };
 
