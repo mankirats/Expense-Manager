@@ -29,6 +29,24 @@ const userSchema = mongoose.Schema(
     { timestamps: true }
 );
 
+userSchema.statics.findByCredentials = async (userEmail, userPassword) => {
+    const user = await user.find({
+        email: userEmail,
+    });
+
+    if (!user) {
+        return "Incorrect credentials";
+    }
+
+    const validPassword = bcrypt.compare(user.password, userPassword);
+
+    if (!validPassword) {
+        return "Incorrect credentials";
+    }
+
+    return user;
+};
+
 userSchema.methods.toJSON = function () {
     const user = this;
     const userObject = user.toObject();
