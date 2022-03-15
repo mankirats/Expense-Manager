@@ -8,6 +8,29 @@ router.get("/api/v1/userprofile", auth, (req, res) => {
     res.send(user);
 });
 
+router.post("/api/v1/userlogin", async (req, res) => {
+    const user = await user.findByCredentials(req.body);
+    try {
+        if (!user) {
+            res.status(400).send({
+                status: 400,
+                message: "Credentials entered are invalid",
+            });
+        }
+
+        res.status(200).send({
+            status: 400,
+            message: "Credentials entered are invalid",
+            data: user,
+        });
+    } catch (err) {
+        res.status(400).send({
+            status: 400,
+            message: message.err,
+        });
+    }
+});
+
 router.post("/api/v1/register", async (req, res) => {
     try {
         const user = new User(req.body);
