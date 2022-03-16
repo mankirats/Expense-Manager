@@ -69,11 +69,9 @@ userSchema.methods.generateAuthToken = function () {
     }
 };
 
-userSchema.methods.verifyAuthToken = function () {
-    const user = this;
-    // try{
-
-    // }
+userSchema.methods.verifyAuthToken = function (reqToken) {
+    const token = jwt.verify(reqToken, process.env.JWT_SECRET);
+    return token;
 };
 
 userSchema.pre("save", async function (next) {
