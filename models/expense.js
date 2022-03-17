@@ -1,10 +1,16 @@
-const mongoose = require("../db/mongoose");
+const mongoose = require("mongoose");
+const User = require("../models/user");
+require("../db/mongoose");
 
 const expenseSchema = new mongoose.Schema(
     {
         expenseTitle: { type: String, required: true },
         expenseAmount: { type: Number, required: true },
-        expensedBy: { type: Schema.Type.Object.Id, ref: "User" },
+        expensedBy: {
+            type: mongoose.Schema.Types.ObjectId,
+            required: true,
+            ref: "user",
+        },
     },
     { timestamps: true }
 );
