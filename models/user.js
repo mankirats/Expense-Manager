@@ -1,9 +1,10 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const Expense = require("../models/expense");
 require("../db/mongoose");
 
-const userSchema = mongoose.Schema(
+const userSchema = new mongoose.Schema(
     {
         name: {
             type: String,
@@ -46,6 +47,12 @@ userSchema.statics.findByCredentials = async (userEmail, userPassword) => {
     return user;
 };
 
+userSchema.virtual("allExpense", {
+    ref: "expense",
+    localField: "_id",
+    foreignField: "expensedBy",
+});
+
 userSchema.methods.toJSON = function () {
     const user = this;
     const userObject = user.toObject();
@@ -73,6 +80,19 @@ userSchema.methods.verifyAuthToken = function (reqToken) {
     const token = jwt.verify(reqToken, process.env.JWT_SECRET);
     return token;
 };
+
+userSchema.pre("deleteOne", { document: true }, async function (next) {
+    try {
+        const user = this;
+        console.log(user._id);
+        const deleteAllTasks = await Expense.deleteMany({
+            expensedBy: user._id,
+        });
+    } catch (err) {
+        throw new Error(err.message);
+    }
+    next();
+});
 
 userSchema.pre("save", async function (next) {
     const user = this;
