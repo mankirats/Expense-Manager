@@ -43,4 +43,43 @@ router.post("/api/v1/register", async (req, res) => {
     }
 });
 
+router.patch("/api/v1/user/update", auth, async (req, res) => {
+    try {
+        const user = req.user;
+        const allowed_updates = Object.keys(user.toJSON());
+        const req_updates = Object.keys(req.body);
+        const valid_update = req_updates.every((key) => {
+            return allowed_updates.includes(key);
+        });
+        if (!valid_update) {
+            throw new Error("Invalid update");
+        }
+        for (let key of req_updates) {
+            user[key] = req.body[key];
+        }
+        const result = await user.save();
+        res.status(201).send({
+            status: 201,
+            message: "User successfully updated",
+            data: result,
+        });
+    } catch (err) {
+        res.status(400).send({ status: 400, message: err.message });
+    }
+});
+
+router.delete("/api/v1/user/delete", auth, async (req, res) => {
+    try {
+        const user = req.user;
+        const deletedUser = await user.deleteOne();
+        res.status(202).send({
+            status: 202,
+            message: "User delete successfully",
+            data: deletedUser,
+        });
+    } catch (err) {
+        res.status(204).send({ status: 204, message: err.message });
+    }
+});
+
 module.exports = router;
