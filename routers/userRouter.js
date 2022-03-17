@@ -2,7 +2,8 @@ const express = require("express");
 const router = new express.Router();
 const User = require("../models/user");
 const auth = require("../middleware/auth");
-
+const Expense = require("../models/expense");
+require("../db/mongoose");
 router.get("/api/v1/userprofile", auth, (req, res) => {
     const user = req.user;
     res.send(user);
@@ -40,6 +41,16 @@ router.post("/api/v1/register", async (req, res) => {
         });
     } catch (err) {
         res.status(400).send(err.message);
+    }
+});
+
+router.get("/api/v1/expenses", auth, async (req, res) => {
+    try {
+        const user = req.user;
+        await user.populate("allExpense");
+        res.send(user.allExpense);
+    } catch (err) {
+        res.send(err.message);
     }
 });
 
