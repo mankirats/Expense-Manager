@@ -44,16 +44,6 @@ router.post("/api/v1/register", async (req, res) => {
     }
 });
 
-router.get("/api/v1/expenses", auth, async (req, res) => {
-    try {
-        const user = req.user;
-        await user.populate("allExpense");
-        res.send(user.allExpense);
-    } catch (err) {
-        res.send(err.message);
-    }
-});
-
 router.patch("/api/v1/user/update", auth, async (req, res) => {
     try {
         const user = req.user;
