@@ -6,6 +6,20 @@ const expenseSchema = new mongoose.Schema(
     {
         expenseTitle: { type: String, required: true },
         expenseAmount: { type: Number, required: true },
+        expenseDate: {
+            type: Date,
+            min: "1999-01-01",
+            required: "true",
+            validate: {
+                validator: function (v) {
+                    return (
+                        v && // check that there is a date object
+                        v.getTime() < Date.now() + 24 * 60 * 60 * 1000
+                    );
+                },
+                message: "Expense date cannot be greater than current date",
+            },
+        },
         expensedBy: {
             type: mongoose.Schema.Types.ObjectId,
             required: true,

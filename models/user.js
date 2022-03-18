@@ -84,8 +84,7 @@ userSchema.methods.verifyAuthToken = function (reqToken) {
 userSchema.pre("deleteOne", { document: true }, async function (next) {
     try {
         const user = this;
-        console.log(user._id);
-        const deleteAllTasks = await Expense.deleteMany({
+        await Expense.deleteMany({
             expensedBy: user._id,
         });
     } catch (err) {
