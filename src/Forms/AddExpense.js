@@ -28,9 +28,7 @@ function AddExpense(props) {
 
     const submitForm = (event) => {
         event.preventDefault();
-        // console.log(
-        //     `${expenseItem.expenseTitle} ${expenseItem.expenseTotal} ${expenseItem.expenseDate}`
-        // );
+
         if (
             expenseItem.expenseTitle.length == 0 ||
             expenseItem.expenseDate.length == 0 ||

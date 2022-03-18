@@ -90,7 +90,6 @@ class App extends Component {
         const filterData = this.state.expenseData.filter((expense) => {
             return extractExpenseYear(expense.date) == this.state.filterYear;
         });
-        console.log(this.state);
         let dataToDisplay =
             filterData.length > 0 ? filterData : this.state.expenseData;
         let mapExpenseState = dataToDisplay.map((expenseItem) => {

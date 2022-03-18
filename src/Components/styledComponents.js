@@ -162,7 +162,7 @@ const ExpenseHeaderDiv = styled.div`
     height: calc(2rem + 2vh);
     border-radius: 8px;
     display: flex;
-    color: ${color3}
+    color: ${color3};
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
