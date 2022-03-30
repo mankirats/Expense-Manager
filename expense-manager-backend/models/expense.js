@@ -8,7 +8,7 @@ const expenseSchema = new mongoose.Schema(
         expenseAmount: { type: Number, required: true },
         expenseDate: {
             type: Date,
-            min: "1999-01-01",
+            min: "1999-01-11",
             required: "true",
             validate: {
                 validator: function (v) {
