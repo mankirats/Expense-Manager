@@ -43,30 +43,30 @@ function AddExpense(props) {
     const submitForm = (event) => {
         event.preventDefault();
         console.log(expenseTitle);
-        // if (
-        //     expenseTitle.value.length == 0 ||
-        //     expenseItem.expenseDate.length == 0 ||
-        //     expenseItem.expenseTotal.length == 0
-        // ) {
-        //     setExpenseTouch({
-        //         expenseTitle: true,
-        //         expenseTotal: true,
-        //         expenseDate: true,
-        //     });
-        //     return;
-        // }
-        props.onSubmitForm(expenseItem);
+        if (
+            expenseTitle.value.length == 0 ||
+            expenseItem.expenseDate.length == 0 ||
+            expenseItem.expenseTotal.length == 0
+        ) {
+            setExpenseTouch({
+                // expenseTitle['type']: "USER_TYPE",
+                expenseTotal: true,
+                expenseDate: true,
+            });
+            return;
+        }
+        props.onSubmitForm(expenseItem, expenseTitle.value);
 
         setExpenseItem({
-            // expenseTitle: "",
+            // expenseTitle.value: "",
             expenseTotal: "",
             expenseDate: "",
         });
-        // setExpenseTouch({
-        //     expenseTitle: false,
-        //     expenseTotal: false,
-        //     expenseDate: false,
-        // });
+        setExpenseTouch({
+            expenseTitle: { value: "" },
+            expenseTotal: false,
+            expenseDate: false,
+        });
     };
     const errors = {
         titleLessThan3Char: "Expense title must be minimum 3 characters.",
