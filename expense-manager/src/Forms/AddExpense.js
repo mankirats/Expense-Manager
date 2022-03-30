@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useReducer } from "react";
 
 import {
     FormTitle,
@@ -14,45 +14,59 @@ import {
     FieldLabel,
 } from "../Components/styledComponents";
 
+const expenseTitleHandler = (state, action) => {
+    if (action["type"] == "USER_INPUT") {
+        return { value: action.val, type: "USER_TYPE" };
+    } else if (action["type"] == "USER_BLUR") {
+        return { value: state.value, type: "USER_TYPE" };
+    }
+    return { value: "" };
+};
+
 function AddExpense(props) {
     const [expenseItem, setExpenseItem] = useState({
-        expenseTitle: "",
+        // expenseTitle: "",
         expenseTotal: "",
         expenseDate: "",
     });
     const [expenseTouch, setExpenseTouch] = useState({
-        expenseTitle: false,
+        // expenseTitle: false,
         expenseTotal: false,
         expenseDate: false,
     });
 
+    const [expenseTitle, expenseTitleDispatch] = useReducer(
+        expenseTitleHandler,
+        { value: "" }
+    );
+
     const submitForm = (event) => {
         event.preventDefault();
-
-        if (
-            expenseItem.expenseTitle.length == 0 ||
-            expenseItem.expenseDate.length == 0 ||
-            expenseItem.expenseTotal.length == 0
-        ) {
-            setExpenseTouch({
-                expenseTitle: true,
-                expenseTotal: true,
-                expenseDate: true,
-            });
-            return;
-        }
+        console.log(expenseTitle);
+        // if (
+        //     expenseTitle.value.length == 0 ||
+        //     expenseItem.expenseDate.length == 0 ||
+        //     expenseItem.expenseTotal.length == 0
+        // ) {
+        //     setExpenseTouch({
+        //         expenseTitle: true,
+        //         expenseTotal: true,
+        //         expenseDate: true,
+        //     });
+        //     return;
+        // }
         props.onSubmitForm(expenseItem);
 
         setExpenseItem({
-            expenseTitle: "",
+            // expenseTitle: "",
             expenseTotal: "",
             expenseDate: "",
         });
-        setExpenseTouch({
-            expenseTitle: false,
-            expenseTotal: false,
-            expenseDate: false,
-        });
+        // setExpenseTouch({
+        //     expenseTitle: false,
+        //     expenseTotal: false,
+        //     expenseDate: false,
+        // });
     };
     const errors = {
         titleLessThan3Char: "Expense title must be minimum 3 characters.",
@@ -71,26 +85,34 @@ function AddExpense(props) {
                         type="text"
                         name="title"
                         id="title"
-                        value={expenseItem.expenseTitle}
+                        value={expenseTitle.value}
                         // placeholder="Expense Title"
                         onChange={(e) => {
-                            setExpenseItem((prevState) => ({
-                                ...prevState,
-                                expenseTitle: e.target.value.trim(),
-                            }));
+                            expenseTitleDispatch({
+                                type: "USER_INPUT",
+                                val: e.target.value,
+                            });
+                            console.log(expenseTitle);
+                            // setExpenseItem((prevState) => ({
+                            //     ...prevState,
+                            //     expenseTitle: e.target.value.trim(),
+                            // }));
                         }}
                         onBlur={(e) => {
-                            setExpenseTouch((prevState) => ({
-                                ...prevState,
-                                expenseTitle: true,
-                            }));
+                            expenseTitleDispatch({
+                                type: "USER_BLUR",
+                            });
+                            // setExpenseTouch((prevState) => ({
+                            //     ...prevState,
+                            //     expenseTitle: true,
+                            // }));
                         }}
                     />
-                    {expenseTouch.expenseTitle &&
-                    expenseItem.expenseTitle == "" ? (
+                    {expenseTitle.type == "USER_TYPE" &&
+                    expenseTitle.value == "" ? (
                         <Validations>{errors.noTitle}</Validations>
-                    ) : expenseTouch.expenseTitle &&
-                      expenseItem.expenseTitle.length < 3 ? (
+                    ) : expenseTitle.type == "USER_TYPE" &&
+                      expenseTitle.value.length < 3 ? (
                         <Validations>{errors.titleLessThan3Char}</Validations>
                     ) : (
                         <></>
