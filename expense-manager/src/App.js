@@ -141,11 +141,6 @@ class App extends Component {
                     ) : (
                         <></>
                     )}
-                    <ExpenseHeaderDiv>
-                        <span>Date</span>
-                        <span>Title</span>
-                        <span>Amount</span>
-                    </ExpenseHeaderDiv>
                     <FilterExpenseByYear
                         filterYear={this.state.filterYear}
                         setFilterYear={this.setFilterYearHandler}
@@ -159,6 +154,11 @@ class App extends Component {
                                 );
                             })}
                     ></FilterExpenseByYear>
+                    <ExpenseHeaderDiv>
+                        <span>Date</span>
+                        <span>Title</span>
+                        <span>Amount</span>
+                    </ExpenseHeaderDiv>
                     {mapExpenseState}
                 </ExpenseContainerDiv>
             </AppContainer>
