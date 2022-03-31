@@ -162,7 +162,7 @@ const ExpenseHeaderDiv = styled.div`
     height: calc(2rem + 2vh);
     border-radius: 8px;
     display: flex;
-    color: ${color3};
+    /* color: ${color3}; */
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
@@ -173,10 +173,10 @@ const ExpenseHeaderDiv = styled.div`
 const FilterYearDiv = styled.div`
     position: relative;
     background: ${color2};
-    margin-bottom: -0.5rem;
+    margin-top: 1rem;
     padding: 0 2rem;
-    border-radius: 8px 8px 0 0;
-    height: calc(1.7rem + 1.7vh);
+    height: calc(1.5rem + 1.5vh);
+    border-radius: 8px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -208,8 +208,13 @@ const PageHeader = styled.div`
     padding: 1.7rem 5rem;
     font-weight: 800;
     color: ${color4};
+    @media ${devices.laptop} {
+        padding: 1.5rem 0.5rem;
+        font-size: 0.8rem;
+        font-weight: 600;
+    }
     @media ${devices.mobileL} {
-        padding: 1.5rem 1rem;
+        padding: 1.5rem 0.5rem;
         font-size: 0.8rem;
         font-weight: 600;
     }
@@ -223,9 +228,12 @@ const PageTitle = styled.span`
 `;
 const ExpenseTotalHeader = styled.span`
     margin-left: auto;
-    font-size: 1rem;
+    /* font-size: 1rem; */
     letter-spacing: 0.5px;
     font-weight: 500;
+    @media ${devices.mobileL} {
+        width: 100%;
+    }
 `;
 
 const DisplayExpenseFormContainer = styled.div`
