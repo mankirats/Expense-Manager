@@ -49,7 +49,7 @@ class App extends Component {
     filterData = [];
 
     onSubmitFormHandler = (expenseItem) => {
-        const formData = { ...expenseItem };
+        const formData = expenseItem;
         formatDate(formData.expenseDate);
         const newExpense = {
             id:
