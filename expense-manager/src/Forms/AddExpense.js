@@ -23,49 +23,52 @@ const expenseTitleHandler = (state, action) => {
     return { value: "" };
 };
 
-function AddExpense(props) {
-    const [expenseItem, setExpenseItem] = useState({
-        // expenseTitle: "",
-        expenseTotal: "",
-        expenseDate: "",
-    });
-    const [expenseTouch, setExpenseTouch] = useState({
-        // expenseTitle: false,
-        expenseTotal: false,
-        expenseDate: false,
-    });
+const expenseTotalHandler = (state, action) => {
+    if (action.type == "USER_TYPE") {
+        return { value: action.val, type: "USER_TYPE" };
+    } else if (action.type == "USER_BLUR") {
+        return { value: state.value, type: "USER_TYPE" };
+    }
+    return { value: "" };
+};
 
+const expenseDateHandler = (state, action) => {
+    if (action.type == "USER_TYPE") {
+        return { value: action.val, type: "USER_TYPE" };
+    } else if (action.type == "USER_BLUR") {
+        return { value: state.value, type: "USER_TYPE" };
+    }
+    return { value: "" };
+};
+
+function AddExpense(props) {
     const [expenseTitle, expenseTitleDispatch] = useReducer(
         expenseTitleHandler,
         { value: "" }
     );
 
+    const [expenseTotal, expenseTotalDispatch] = useReducer(
+        expenseTotalHandler,
+        { value: "" }
+    );
+
+    const [expenseDate, expenseDateDispatch] = useReducer(expenseDateHandler, {
+        value: "",
+    });
+
     const submitForm = (event) => {
         event.preventDefault();
-        console.log(expenseTitle);
         if (
             expenseTitle.value.length == 0 ||
-            expenseItem.expenseDate.length == 0 ||
-            expenseItem.expenseTotal.length == 0
+            expenseDate.value.length == 0 ||
+            expenseTotal.value.length == 0
         ) {
-            setExpenseTouch({
-                // expenseTitle['type']: "USER_TYPE",
-                expenseTotal: true,
-                expenseDate: true,
-            });
             return;
         }
-        props.onSubmitForm(expenseItem, expenseTitle.value);
-
-        setExpenseItem({
-            // expenseTitle.value: "",
-            expenseTotal: "",
-            expenseDate: "",
-        });
-        setExpenseTouch({
-            expenseTitle: { value: "" },
-            expenseTotal: false,
-            expenseDate: false,
+        props.onSubmitForm({
+            expenseTitle: expenseTitle.value,
+            expenseDate: expenseDate["value"],
+            expenseTotal: expenseTotal.value,
         });
     };
     const errors = {
@@ -86,26 +89,16 @@ function AddExpense(props) {
                         name="title"
                         id="title"
                         value={expenseTitle.value}
-                        // placeholder="Expense Title"
                         onChange={(e) => {
                             expenseTitleDispatch({
                                 type: "USER_INPUT",
                                 val: e.target.value,
                             });
-                            console.log(expenseTitle);
-                            // setExpenseItem((prevState) => ({
-                            //     ...prevState,
-                            //     expenseTitle: e.target.value.trim(),
-                            // }));
                         }}
                         onBlur={(e) => {
                             expenseTitleDispatch({
                                 type: "USER_BLUR",
                             });
-                            // setExpenseTouch((prevState) => ({
-                            //     ...prevState,
-                            //     expenseTitle: true,
-                            // }));
                         }}
                     />
                     {expenseTitle.type == "USER_TYPE" &&
@@ -125,22 +118,21 @@ function AddExpense(props) {
                         name="date"
                         id="date"
                         // placeholder="Expense Date"
-                        value={expenseItem.expenseDate}
-                        onChange={(e) =>
-                            setExpenseItem((prevState) => ({
-                                ...prevState,
-                                expenseDate: e.target.value,
-                            }))
-                        }
+                        value={expenseDate.value}
+                        onChange={(e) => {
+                            expenseDateDispatch({
+                                val: e.target.value,
+                                type: "USER_TYPE",
+                            });
+                        }}
                         onBlur={(e) => {
-                            setExpenseTouch((prevState) => ({
-                                ...prevState,
-                                expenseDate: true,
-                            }));
+                            expenseDateDispatch({
+                                type: "USER_BLUR",
+                            });
                         }}
                     />
-                    {expenseTouch.expenseDate &&
-                    expenseItem.expenseDate == "" ? (
+                    {expenseDate.type == "USER_TYPE" &&
+                    expenseDate.value == "" ? (
                         <Validations>{errors.noDate}</Validations>
                     ) : (
                         <>&nbsp;</>
@@ -154,23 +146,21 @@ function AddExpense(props) {
                         type="number"
                         name="total"
                         id="total"
-                        // placeholder="Expense Total"
-                        value={expenseItem.expenseTotal}
-                        onChange={(e) =>
-                            setExpenseItem((prevState) => ({
-                                ...prevState,
-                                expenseTotal: e.target.value,
-                            }))
-                        }
+                        value={expenseTotal.value}
+                        onChange={(e) => {
+                            expenseTotalDispatch({
+                                type: "USER_TYPE",
+                                val: e.target.value,
+                            });
+                        }}
                         onBlur={(e) => {
-                            setExpenseTouch((prevState) => ({
-                                ...prevState,
-                                expenseTotal: true,
-                            }));
+                            expenseTotalDispatch({
+                                type: "USER_BLUR",
+                            });
                         }}
                     />
-                    {expenseTouch.expenseTotal &&
-                    expenseItem.expenseTotal == "" ? (
+                    {expenseTotal.type == "USER_TYPE" &&
+                    expenseTotal.value == "" ? (
                         <Validations>{errors.noAmount}</Validations>
                     ) : (
                         <>&nbsp;</>
