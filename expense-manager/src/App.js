@@ -97,12 +97,7 @@ class App extends Component {
                 <Expense
                     key={expenseItem.id}
                     id={expenseItem.id}
-                    title={
-                        expenseItem.title
-                        //     > 15
-                        //         ? expenseItem.title.slice(0, 10)
-                        //         : expenseItem.title
-                    }
+                    title={expenseItem.title}
                     date={formatDate(expenseItem.date)}
                     total={expenseItem.total}
                 />
