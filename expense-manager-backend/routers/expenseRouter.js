@@ -42,7 +42,7 @@ router.patch("/api/v1/expense/:id/update", auth, async (req, res) => {
             _id: req.params.id.toString(),
             expensedBy: req.user._id,
         });
-        console.log(expense);
+
         if (!expense) {
             throw new Error("Expense not available");
         }
