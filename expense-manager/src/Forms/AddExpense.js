@@ -150,7 +150,7 @@ function AddExpense(props) {
                         onChange={(e) => {
                             expenseTotalDispatch({
                                 type: "USER_TYPE",
-                                val: e.target.value,
+                                val: parseInt(e.target.value).toFixed(2),
                             });
                         }}
                         onBlur={(e) => {
