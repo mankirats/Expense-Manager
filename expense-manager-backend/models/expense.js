@@ -5,7 +5,7 @@ require("../db/mongoose");
 const expenseSchema = new mongoose.Schema(
     {
         expenseTitle: { type: String, required: true },
-        expenseAmount: { type: Number, required: true },
+        expenseTotal: { type: Number, required: true },
         expenseDate: {
             type: Date,
             min: "1999-01-11",
