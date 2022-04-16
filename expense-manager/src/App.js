@@ -46,6 +46,15 @@ class App extends Component {
             displayAddExpense: false,
         };
     }
+    async componentDidMount() {
+        // GET request using fetch with async/await
+        const response = await fetch(
+            "http://localhost:5000/api/v1/allExpenses"
+        );
+        const data = await response.json();
+        console.log(data);
+        this.setState({ expenseData: data });
+    }
     filterData = [];
 
     onSubmitFormHandler = (expenseItem) => {

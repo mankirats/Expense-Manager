@@ -16,6 +16,16 @@ router.get("/api/v1/expenses", auth, async (req, res) => {
     }
 });
 
+router.get("/api/v1/allExpenses", async (req, res) => {
+    try {
+        const expense = await Expense.find({});
+        console.log(expense);
+        res.send(expense);
+    } catch (err) {
+        res.send(err.message);
+    }
+});
+
 router.post("/api/v1/expense/add", auth, async (req, res) => {
     try {
         const expense = new Expense({
