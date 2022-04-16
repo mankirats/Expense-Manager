@@ -52,8 +52,17 @@ class App extends Component {
             "http://localhost:5000/api/v1/allExpenses"
         );
         const data = await response.json();
-        console.log(data);
-        this.setState({ expenseData: data });
+        const newData = data.map((dt) => {
+            return {
+                id: dt._id,
+                title: dt.expenseTitle,
+                total: dt.expenseTotal,
+                date: formatDate(dt.expenseDate),
+            };
+        });
+
+        console.log(newData);
+        this.setState({ expenseData: [...newData] });
     }
     filterData = [];
 
@@ -108,7 +117,7 @@ class App extends Component {
                     id={expenseItem.id}
                     title={expenseItem.title}
                     date={formatDate(expenseItem.date)}
-                    total={expenseItem.total}
+                    total={expenseItem.total.toFixed(2)}
                 />
             );
         });
@@ -159,8 +168,8 @@ class App extends Component {
                             })}
                     ></FilterExpenseByYear>
                     <ExpenseHeaderDiv>
-                        <span>Date</span>
                         <span>Title</span>
+                        <span>Date</span>
                         <span>Amount</span>
                     </ExpenseHeaderDiv>
                     {mapExpenseState}
