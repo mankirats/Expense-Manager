@@ -9,7 +9,7 @@ const ExpenseDiv = styled.div`
     background: ${color4};
     margin: 0.2rem 0;
     /* width: 45vw; */
-    padding: 0 2rem;
+    padding: 0 1.5rem;
     min-height: calc(2rem + 2vh);
     border-radius: 8px;
     display: flex;
@@ -36,7 +36,7 @@ const ExpenseEntryNumber = styled.span`
     position: absolute;
 `;
 const ExpenseTitle = styled.span`
-    text-align: center;
+    text-align: left;
     width: calc(100% / 3);
     overflow-wrap: break-word;
 `;
@@ -46,7 +46,7 @@ const ExpenseTotal = styled.span`
     overflow-wrap: break-word;
 `;
 const ExpenseDate = styled.span`
-    text-align: left;
+    text-align: center;
     width: calc(100% / 3);
     overflow-wrap: break-word;
 `;
