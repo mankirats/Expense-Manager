@@ -39,6 +39,19 @@ router.post("/api/v1/expense/add", auth, async (req, res) => {
     }
 });
 
+router.post("/api/v1/expense/add1", async (req, res) => {
+    try {
+        const expense = new Expense({
+            ...req.body,
+            expensedBy: "624dce11dda35e4b6adf3406",
+        });
+        result = await expense.save();
+        res.send(result);
+    } catch (err) {
+        res.send(err.message);
+    }
+});
+
 router.patch("/api/v1/expense/:id/update", auth, async (req, res) => {
     try {
         const expense_object = await Expense.findOne({});
