@@ -74,9 +74,9 @@ class App extends Component {
             // id:
             //     this.state.expenseData[this.state.expenseData.length - 1]
             //         .id + 1,
-            title: formData.expenseTitle,
-            total: formData.expenseTotal,
-            date: formData.expenseDate,
+            expenseTitle: formData.expenseTitle,
+            expenseTotal: formData.expenseTotal,
+            expenseDate: formData.expenseDate,
         };
         // newExpense.expenseDate = formatDate(new Date(newExpense.expenseDate));
         try {
@@ -98,6 +98,21 @@ class App extends Component {
             //         // displayAddExpense: !this.state.displayAddExpense,
             //     };
             // });
+            return this.setState((prevState) => {
+                return {
+                    ...prevState,
+                    expenseData: [
+                        ...this.state.expenseData,
+                        {
+                            id: data._id,
+                            title: data.expenseTitle,
+                            total: data.expenseTotal,
+                            date: formatDate(data.expenseDate),
+                        },
+                    ],
+                    // displayAddExpense: !this.state.displayAddExpense,
+                };
+            });
             console.log(this.state.expenseData);
         } catch (err) {
             console.log("data");
