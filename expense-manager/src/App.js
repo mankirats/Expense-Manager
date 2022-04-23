@@ -12,6 +12,7 @@ import {
     DisplayExpenseFormContainer,
 } from "./Components/styledComponents";
 
+const url = "http://localhost:5000";
 class App extends Component {
     constructor(props) {
         super(props);
@@ -48,11 +49,9 @@ class App extends Component {
     }
     async componentDidMount() {
         // GET request using fetch with async/await
-        const response = await fetch(
-            "http://localhost:5000/api/v1/allExpenses"
-        );
+        const response = await fetch(`${url}/api/v1/allExpenses`);
         const data = await response.json();
-        const newData = data.map((dt) => {
+        const newData = data.map((dt, index) => {
             return {
                 id: dt._id,
                 title: dt.expenseTitle,
@@ -62,28 +61,56 @@ class App extends Component {
         });
 
         console.log(newData);
-        this.setState({ expenseData: [...newData] });
+        if (newData.length > 0) {
+            this.setState({ expenseData: [...newData] });
+        }
     }
+
     filterData = [];
 
-    onSubmitFormHandler = (expenseItem) => {
-        const formData = expenseItem;
-        formatDate(formData.expenseDate);
+    onSubmitFormHandler = async (expenseItem) => {
+        const formData = Object.assign(expenseItem);
         const newExpense = {
-            id:
-                this.state.expenseData[this.state.expenseData.length - 1].id +
-                1,
+            // id:
+            //     this.state.expenseData[this.state.expenseData.length - 1]
+            //         .id + 1,
             title: formData.expenseTitle,
             total: formData.expenseTotal,
-            date: formatDate(formData.expenseDate),
+            date: formData.expenseDate,
         };
-        return this.setState((prevState) => {
-            return {
-                ...prevState,
-                expenseData: [...this.state.expenseData, newExpense],
-                // displayAddExpense: !this.state.displayAddExpense,
-            };
-        });
+        // newExpense.expenseDate = formatDate(new Date(newExpense.expenseDate));
+        try {
+            console.log(newExpense.expenseDate);
+            const postForm = await fetch(`${url}/api/v1/expense/add1`, {
+                method: "POST",
+                body: JSON.stringify(newExpense),
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            });
+            const data = await postForm.json();
+
+            console.log(data);
+            // this.setState((prevState) => {
+            //     return {
+            //         ...prevState,
+            //         expenseData: [...this.state.expenseData, data],
+            //         // displayAddExpense: !this.state.displayAddExpense,
+            //     };
+            // });
+            console.log(this.state.expenseData);
+        } catch (err) {
+            console.log("data");
+            console.log(err.message);
+        }
+        // return postForm;
+        // return this.setState((prevState) => {
+        //     return {
+        //         ...prevState,
+        //         expenseData: [...this.state.expenseData, newExpense],
+        //         // displayAddExpense: !this.state.displayAddExpense,
+        //     };
+        // });
     };
 
     setFilterYearHandler = (selectedYear) => {
@@ -116,8 +143,8 @@ class App extends Component {
                     key={expenseItem.id}
                     id={expenseItem.id}
                     title={expenseItem.title}
-                    date={formatDate(expenseItem.date)}
-                    total={expenseItem.total.toFixed(2)}
+                    date={expenseItem.date}
+                    total={expenseItem.total}
                 />
             );
         });
