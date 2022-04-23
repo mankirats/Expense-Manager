@@ -17,32 +17,7 @@ class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            expenseData: [
-                {
-                    id: "e1",
-                    title: "Toilet Paper",
-                    total: 94.12,
-                    date: "2020,1,22",
-                },
-                {
-                    id: "e2",
-                    title: "New TV",
-                    total: 799.49,
-                    date: "2019,4,12",
-                },
-                {
-                    id: "e3",
-                    title: "Car Insurance",
-                    total: 294.67,
-                    date: "2020, 2, 28",
-                },
-                {
-                    id: "e4",
-                    title: "New Desk (Wooden)",
-                    total: 450,
-                    date: "2021, 5, 12",
-                },
-            ],
+            expenseData: [],
             filterYear: 0,
             displayAddExpense: false,
         };
@@ -167,13 +142,17 @@ class App extends Component {
         return (
             <AppContainer>
                 <HeaderWithTotal
-                    expenseTotal={this.state.expenseData
-                        .map((expense) => {
-                            return Number(expense.total);
-                        })
-                        .reduce((totalExpense, currentExp) => {
-                            return (totalExpense += currentExp);
-                        })}
+                    expenseTotal={
+                        this.state.expenseData.length > 0
+                            ? this.state.expenseData
+                                  .map((expense) => {
+                                      return Number(expense.total);
+                                  })
+                                  .reduce((totalExpense, currentExp) => {
+                                      return (totalExpense += currentExp);
+                                  })
+                            : 0
+                    }
                 ></HeaderWithTotal>
                 <ExpenseContainerDiv>
                     {!this.state.displayAddExpense ? (
