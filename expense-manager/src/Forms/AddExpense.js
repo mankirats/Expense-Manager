@@ -15,27 +15,27 @@ import {
 } from "../Components/styledComponents";
 
 const expenseTitleHandler = (state, action) => {
-    if (action["type"] == "USER_INPUT") {
+    if (action["type"] === "USER_INPUT") {
         return { value: action.val, type: "USER_TYPE" };
-    } else if (action["type"] == "USER_BLUR") {
+    } else if (action["type"] === "USER_BLUR") {
         return { value: state.value, type: "USER_TYPE" };
     }
     return { value: "" };
 };
 
 const expenseTotalHandler = (state, action) => {
-    if (action.type == "USER_TYPE") {
+    if (action.type === "USER_TYPE") {
         return { value: action.val, type: "USER_TYPE" };
-    } else if (action.type == "USER_BLUR") {
+    } else if (action.type === "USER_BLUR") {
         return { value: state.value, type: "USER_TYPE" };
     }
     return { value: "" };
 };
 
 const expenseDateHandler = (state, action) => {
-    if (action.type == "USER_TYPE") {
+    if (action.type === "USER_TYPE") {
         return { value: action.val, type: "USER_TYPE" };
-    } else if (action.type == "USER_BLUR") {
+    } else if (action.type === "USER_BLUR") {
         return { value: state.value, type: "USER_TYPE" };
     }
     return { value: "" };
@@ -59,9 +59,9 @@ function AddExpense(props) {
     const submitForm = (event) => {
         event.preventDefault();
         if (
-            expenseTitle.value.length == 0 ||
-            expenseDate.value.length == 0 ||
-            expenseTotal.value.length == 0
+            expenseTitle.value.length === 0 ||
+            expenseDate.value.length === 0 ||
+            expenseTotal.value.length === 0
         ) {
             return;
         }
@@ -101,10 +101,10 @@ function AddExpense(props) {
                             });
                         }}
                     />
-                    {expenseTitle.type == "USER_TYPE" &&
-                    expenseTitle.value == "" ? (
+                    {expenseTitle.type === "USER_TYPE" &&
+                    expenseTitle.value === "" ? (
                         <Validations>{errors.noTitle}</Validations>
-                    ) : expenseTitle.type == "USER_TYPE" &&
+                    ) : expenseTitle.type === "USER_TYPE" &&
                       expenseTitle.value.length < 3 ? (
                         <Validations>{errors.titleLessThan3Char}</Validations>
                     ) : (
@@ -131,8 +131,8 @@ function AddExpense(props) {
                             });
                         }}
                     />
-                    {expenseDate.type == "USER_TYPE" &&
-                    expenseDate.value == "" ? (
+                    {expenseDate.type === "USER_TYPE" &&
+                    expenseDate.value === "" ? (
                         <Validations>{errors.noDate}</Validations>
                     ) : (
                         <>&nbsp;</>
@@ -159,8 +159,8 @@ function AddExpense(props) {
                             });
                         }}
                     />
-                    {expenseTotal.type == "USER_TYPE" &&
-                    expenseTotal.value == "" ? (
+                    {expenseTotal.type === "USER_TYPE" &&
+                    expenseTotal.value === "" ? (
                         <Validations>{errors.noAmount}</Validations>
                     ) : (
                         <>&nbsp;</>
