@@ -55,7 +55,7 @@ class App extends Component {
         };
         // newExpense.expenseDate = formatDate(new Date(newExpense.expenseDate));
         try {
-            console.log(newExpense.expenseDate);
+            // console.log(newExpense.expenseDate);
             const postForm = await fetch(`${url}/api/v1/expense/add1`, {
                 method: "POST",
                 body: JSON.stringify(newExpense),
@@ -66,41 +66,34 @@ class App extends Component {
             const data = await postForm.json();
 
             console.log(data);
-            // this.setState((prevState) => {
-            //     return {
-            //         ...prevState,
-            //         expenseData: [...this.state.expenseData, data],
-            //         // displayAddExpense: !this.state.displayAddExpense,
-            //     };
-            // });
-            return this.setState((prevState) => {
+            this.setState((prevState) => {
                 return {
                     ...prevState,
-                    expenseData: [
-                        ...this.state.expenseData,
-                        {
-                            id: data._id,
-                            title: data.expenseTitle,
-                            total: data.expenseTotal,
-                            date: formatDate(data.expenseDate),
-                        },
-                    ],
+                    expenseData: [...this.state.expenseData, data],
                     // displayAddExpense: !this.state.displayAddExpense,
                 };
             });
-            console.log(this.state.expenseData);
+            // return this.setState((prevState) => {
+            //     return {
+            //         ...prevState,
+            //         expenseData: [
+            //             ...this.state.expenseData,
+            //             data,
+            //             // {
+            //             //     id: data._id,
+            //             //     title: data.expenseTitle,
+            //             //     total: data.expenseTotal,
+            //             //     date: formatDate(data.expenseDate),
+            //             // },
+            //         ],
+            //         // displayAddExpense: !this.state.displayAddExpense,
+            //     };
+            // });
+            // console.log(this.state.expenseData);
         } catch (err) {
             console.log("data");
             console.log(err.message);
         }
-        // return postForm;
-        // return this.setState((prevState) => {
-        //     return {
-        //         ...prevState,
-        //         expenseData: [...this.state.expenseData, newExpense],
-        //         // displayAddExpense: !this.state.displayAddExpense,
-        //     };
-        // });
     };
 
     setFilterYearHandler = (selectedYear) => {
